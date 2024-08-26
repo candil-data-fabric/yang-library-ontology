@@ -1,0 +1,496 @@
+<h2 id="crossreference" class="list">Cross-reference for YANG Library Ontology classes, object properties and data properties <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+This section provides details for each class and property defined by YANG Library Ontology.
+<div xmlns:widoco="https://w3id.org/widoco/vocab#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="classes">
+ <h3 id="classes-headline" class="list">Classes</h3>
+ <ul class="hlist">
+  <li><a href="#https://w3id.org/yang/server#Datastore" title="https://w3id.org/yang/server#Datastore">Datastore</a></li>
+  <li><a href="#Module" title="https://w3id.org/yang/library#Module">Module</a></li>
+  <li><a href="#ModuleSet" title="https://w3id.org/yang/library#ModuleSet">Module Set</a></li>
+  <li><a href="#Schema" title="https://w3id.org/yang/library#Schema">Schema</a></li>
+  <li><a href="#Submodule" title="https://w3id.org/yang/library#Submodule">Submodule</a></li>
+  <li><a href="#https://w3id.org/yang/server#YangServer" title="https://w3id.org/yang/server#YangServer">Yang Server</a></li>
+ </ul>
+ <div class="entity" id="https://w3id.org/yang/server#Datastore">
+  <h3>Datastore<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/server#Datastore</p>
+  <div class="comment">
+   <span class="markdown">A conceptual place to store and access information. A datastore might be implemented, for example, using files, a database, flash memory locations, or combinations thereof. A datastore maps to an instantiated YANG data tree.</span>
+  </div>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/server">https://w3id.org/yang/server</a>
+   </dd>
+  </dl>
+  <dl class="description">
+   <dt>
+    is in range of
+   </dt>
+   <dd>
+    <a href="#https://w3id.org/yang/server#datastore" title="https://w3id.org/yang/server#datastore">datastore</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Module">
+  <h3>Module<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#Module</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+  <dl class="description">
+   <dt>
+    is in domain of
+   </dt>
+   <dd>
+    <a href="#augmentsModule" title="https://w3id.org/yang/library#augmentsModule">augments module</a> <sup class="type-op" title="object property">op</sup>, <a href="#deviatesModule" title="https://w3id.org/yang/library#deviatesModule">deviates module</a> <sup class="type-op" title="object property">op</sup>, <a href="#includesSubmodule" title="https://w3id.org/yang/library#includesSubmodule">includes submodule</a> <sup class="type-op" title="object property">op</sup>, <a href="#namespace" title="https://w3id.org/yang/library#namespace">namespace</a> <sup class="type-dp" title="data property">dp</sup>
+   </dd>
+   <dt>
+    is in range of
+   </dt>
+   <dd>
+    <a href="#augmentsModule" title="https://w3id.org/yang/library#augmentsModule">augments module</a> <sup class="type-op" title="object property">op</sup>, <a href="#deviatesModule" title="https://w3id.org/yang/library#deviatesModule">deviates module</a> <sup class="type-op" title="object property">op</sup>, <a href="#implementsModule" title="https://w3id.org/yang/library#implementsModule">implements module</a> <sup class="type-op" title="object property">op</sup>, <a href="#importsOnlyModule" title="https://w3id.org/yang/library#importsOnlyModule">imports only module</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="ModuleSet">
+  <h3>Module Set<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#ModuleSet</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+  <dl class="description">
+   <dt>
+    is in domain of
+   </dt>
+   <dd>
+    <a href="#implementsModule" title="https://w3id.org/yang/library#implementsModule">implements module</a> <sup class="type-op" title="object property">op</sup>, <a href="#implementsSubmodule" title="https://w3id.org/yang/library#implementsSubmodule">implements submodule</a> <sup class="type-op" title="object property">op</sup>, <a href="#importsOnlyModule" title="https://w3id.org/yang/library#importsOnlyModule">imports only module</a> <sup class="type-op" title="object property">op</sup>, <a href="#importsOnlySubmodule" title="https://w3id.org/yang/library#importsOnlySubmodule">imports only submodule</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+   <dt>
+    is in range of
+   </dt>
+   <dd>
+    <a href="#moduleSet" title="https://w3id.org/yang/library#moduleSet">module set</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Schema">
+  <h3>Schema<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#Schema</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+  <dl class="description">
+   <dt>
+    is in range of
+   </dt>
+   <dd>
+    <a href="#schema" title="https://w3id.org/yang/library#schema">schema</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="Submodule">
+  <h3>Submodule<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#Submodule</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+  <dl class="description">
+   <dt>
+    is in range of
+   </dt>
+   <dd>
+    <a href="#implementsSubmodule" title="https://w3id.org/yang/library#implementsSubmodule">implements submodule</a> <sup class="type-op" title="object property">op</sup>, <a href="#importsOnlySubmodule" title="https://w3id.org/yang/library#importsOnlySubmodule">imports only submodule</a> <sup class="type-op" title="object property">op</sup>, <a href="#includesSubmodule" title="https://w3id.org/yang/library#includesSubmodule">includes submodule</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="https://w3id.org/yang/server#YangServer">
+  <h3>Yang Server<sup class="type-c" title="class">c</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#classes">Class ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/server#YangServer</p>
+  <div class="comment">
+   <span class="markdown">An entity that provides access to YANG-defined data to a client, over some network management protocol.</span>
+  </div>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/server">https://w3id.org/yang/server</a>
+   </dd>
+  </dl>
+  <dl class="description">
+   <dt>
+    is in domain of
+   </dt>
+   <dd>
+    <a href="#https://w3id.org/yang/server#datastore" title="https://w3id.org/yang/server#datastore">datastore</a> <sup class="type-op" title="object property">op</sup>
+   </dd>
+  </dl>
+ </div>
+</div><div xmlns:widoco="https://w3id.org/widoco/vocab#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="objectproperties">
+ <h3 id="properties" class="list">Object Properties</h3>
+ <ul class="hlist">
+  <li><a href="#augmentsModule" title="https://w3id.org/yang/library#augmentsModule">augments module</a></li>
+  <li><a href="#https://w3id.org/yang/server#datastore" title="https://w3id.org/yang/server#datastore">datastore</a></li>
+  <li><a href="#deviatesModule" title="https://w3id.org/yang/library#deviatesModule">deviates module</a></li>
+  <li><a href="#implementsModule" title="https://w3id.org/yang/library#implementsModule">implements module</a></li>
+  <li><a href="#implementsSubmodule" title="https://w3id.org/yang/library#implementsSubmodule">implements submodule</a></li>
+  <li><a href="#importsOnlyModule" title="https://w3id.org/yang/library#importsOnlyModule">imports only module</a></li>
+  <li><a href="#importsOnlySubmodule" title="https://w3id.org/yang/library#importsOnlySubmodule">imports only submodule</a></li>
+  <li><a href="#includesSubmodule" title="https://w3id.org/yang/library#includesSubmodule">includes submodule</a></li>
+  <li><a href="#moduleSet" title="https://w3id.org/yang/library#moduleSet">module set</a></li>
+  <li><a href="#schema" title="https://w3id.org/yang/library#schema">schema</a></li>
+ </ul>
+ <div class="entity" id="augmentsModule">
+  <h3>augments module<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#augmentsModule</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+  <div class="description">
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Module" title="https://w3id.org/yang/library#Module">Module</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Module" title="https://w3id.org/yang/library#Module">Module</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="https://w3id.org/yang/server#datastore">
+  <h3>datastore<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/server#datastore</p>
+  <div class="comment">
+   <span class="markdown">Indicates the YANG datastore used by the YANG server.</span>
+  </div>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/server">https://w3id.org/yang/server</a>
+   </dd>
+  </dl>
+  <div class="description">
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#https://w3id.org/yang/server#YangServer" title="https://w3id.org/yang/server#YangServer">Yang Server</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#https://w3id.org/yang/server#Datastore" title="https://w3id.org/yang/server#Datastore">Datastore</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="deviatesModule">
+  <h3>deviates module<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#deviatesModule</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+  <div class="description">
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Module" title="https://w3id.org/yang/library#Module">Module</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Module" title="https://w3id.org/yang/library#Module">Module</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="implementsModule">
+  <h3>implements module<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#implementsModule</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+  <div class="description">
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#ModuleSet" title="https://w3id.org/yang/library#ModuleSet">Module Set</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Module" title="https://w3id.org/yang/library#Module">Module</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="implementsSubmodule">
+  <h3>implements submodule<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#implementsSubmodule</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+  <div class="description">
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#ModuleSet" title="https://w3id.org/yang/library#ModuleSet">Module Set</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Submodule" title="https://w3id.org/yang/library#Submodule">Submodule</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="importsOnlyModule">
+  <h3>imports only module<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#importsOnlyModule</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+  <div class="description">
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#ModuleSet" title="https://w3id.org/yang/library#ModuleSet">Module Set</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Module" title="https://w3id.org/yang/library#Module">Module</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="importsOnlySubmodule">
+  <h3>imports only submodule<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#importsOnlySubmodule</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+  <div class="description">
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#ModuleSet" title="https://w3id.org/yang/library#ModuleSet">Module Set</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Submodule" title="https://w3id.org/yang/library#Submodule">Submodule</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="includesSubmodule">
+  <h3>includes submodule<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#includesSubmodule</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+  <div class="description">
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Module" title="https://w3id.org/yang/library#Module">Module</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Submodule" title="https://w3id.org/yang/library#Submodule">Submodule</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="moduleSet">
+  <h3>module set<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#moduleSet</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+  <div class="description">
+   <dl>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#ModuleSet" title="https://w3id.org/yang/library#ModuleSet">Module Set</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="schema">
+  <h3>schema<sup class="type-op" title="object property">op</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#objectproperties">Object Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#schema</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+  <div class="description">
+   <dl>
+    <dt>
+     has range
+    </dt>
+    <dd>
+     <a href="#Schema" title="https://w3id.org/yang/library#Schema">Schema</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+</div><div xmlns:widoco="https://w3id.org/widoco/vocab#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="dataproperties">
+ <h3 id="dataproperties-headline" class="list">Data Properties</h3>
+ <ul class="hlist">
+  <li><a href="#location" title="https://w3id.org/yang/library#location">location</a></li>
+  <li><a href="#namespace" title="https://w3id.org/yang/library#namespace">namespace</a></li>
+  <li><a href="#revisionDate" title="https://w3id.org/yang/library#revisionDate">revision date</a></li>
+ </ul>
+ <div class="entity" id="location">
+  <h3>location<sup class="type-dp" title="data property">dp</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#location</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+ </div>
+ <div class="entity" id="namespace">
+  <h3>namespace<sup class="type-dp" title="data property">dp</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#namespace</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+  <div class="description">
+   <dl>
+    <dt>
+     has domain
+    </dt>
+    <dd>
+     <a href="#Module" title="https://w3id.org/yang/library#Module">Module</a> <sup class="type-c" title="class">c</sup>
+    </dd>
+   </dl>
+  </div>
+ </div>
+ <div class="entity" id="revisionDate">
+  <h3>revision date<sup class="type-dp" title="data property">dp</sup> <span class="backlink"> back to <a href="#toc">ToC</a> or <a href="#dataproperties">Data Property ToC</a> </span></h3>
+  <p><strong>IRI:</strong> https://w3id.org/yang/library#revisionDate</p>
+  <dl class="definedBy">
+   <dt>
+    Is defined by
+   </dt>
+   <dd>
+    <a href="https://w3id.org/yang/library#">https://w3id.org/yang/library#</a>
+   </dd>
+  </dl>
+ </div>
+</div><div id="legend">
+<h2>Legend <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<div   class="entity">
+<sup class="type-c" title="Classes">c</sup>: Classes <br/>
+<sup class="type-op" title="Object Properties">op</sup>: Object Properties <br/>
+<sup class="type-dp" title="Data Properties">dp</sup>: Data Properties <br/>
+</div>
+</div>
