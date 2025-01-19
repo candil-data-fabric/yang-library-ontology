@@ -6,6 +6,6 @@
 	 dc:title "YANG Library Ontology";
 	 prov:wasAttributedTo :agent0;
 	 prov:wasAttributedTo <https://github.com/dgarijo/Widoco/>,<http://www.essepuntato.it/lode/>;
-	 prov:wasGeneratedAt "2024-07-02";
+	 prov:wasGeneratedAt "2025-01-19";
 .
 :agent0 a prov:Agent; foaf:name "Ignacio Dominguez Martinez-Casanueva".

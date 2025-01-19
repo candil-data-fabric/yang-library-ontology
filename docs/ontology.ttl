@@ -6,22 +6,44 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @base <https://w3id.org/yang/library#> .
 
-<https://w3id.org/yang/library#> rdf:type owl:Ontology ;
-                                  owl:versionIRI <https://w3id.org/yang/library> ;
-                                  <http://purl.org/dc/terms/created> "2024-07-02"^^xsd:date ;
-                                  <http://purl.org/dc/terms/creator> "Ignacio Dominguez Martinez-Casanueva" ;
-                                  <http://purl.org/dc/terms/description> """
+<https://w3id.org/yang/library> rdf:type owl:Ontology ;
+                                 owl:versionIRI <https://w3id.org/yang/library> ;
+                                 <http://purl.org/dc/terms/created> "2025-01-19"^^xsd:date ;
+                                 <http://purl.org/dc/terms/creator> _:genid1 ;
+                                 <http://purl.org/dc/terms/description> """
                                  Ontology that defines concepts for representing YANG modules and the different types of dependencies between them, as well as their implementation by a YANG server. These concepts have been extracted from YANG Library (RFC 8525).
                                  """ ;
-                                  <http://purl.org/dc/terms/license> <http://purl.org/NET/rdflicense/APACHE2.0> ;
-                                  <http://purl.org/dc/terms/title> "YANG Library Ontology" ;
-                                  <http://purl.org/vocab/vann/preferredNamespacePrefix> "yanglib" ;
-                                  <http://purl.org/vocab/vann/preferredNamespaceUri> <https://w3id.org/yang/library#> ;
-                                  owl:versionInfo "0.9.0" .
+                                 <http://purl.org/dc/terms/license> <http://purl.org/NET/rdflicense/APACHE2.0> ;
+                                 <http://purl.org/dc/terms/publisher> _:genid2 ;
+                                 <http://purl.org/dc/terms/source> <https://github.com/candil-data-fabric/yang-server-ontology> ;
+                                 <http://purl.org/dc/terms/title> "YANG Library Ontology" ;
+                                 <http://purl.org/vocab/vann/preferredNamespacePrefix> "yl" ;
+                                 <http://purl.org/vocab/vann/preferredNamespaceUri> : ;
+                                 rdfs:label "YANG Library Ontology"@en ;
+                                 owl:versionInfo "1.0.0" ;
+                                 <https://w3id.org/mod#createdWith> <https://chowlk.linkeddata.es/> .
+
+_:genid1 <http://xmlns.com/foaf/0.1/name> "Ignacio Dominguez Martinez-Casanueva" ;
+          <https://schema.org/identifier> <https://orcid.org/0000-0002-8573-127X> .
+
+_:genid2 <http://xmlns.com/foaf/0.1/homepage> <https://github.com/candil-data-fabric> ;
+          <http://xmlns.com/foaf/0.1/name> "CANDIL Data Fabric" .
 
 #################################################################
 #    Annotation properties
 #################################################################
+
+###  http://purl.org/dc/elements/1.1/created
+<http://purl.org/dc/elements/1.1/created> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
 
 ###  http://purl.org/dc/terms/created
 <http://purl.org/dc/terms/created> rdf:type owl:AnnotationProperty .
@@ -39,12 +61,16 @@
 <http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/terms/publisher
+<http://purl.org/dc/terms/publisher> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/source
+<http://purl.org/dc/terms/source> rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/terms/title
 <http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/vocab/vann/example
-<http://purl.org/vocab/vann/example> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/vocab/vann/preferredNamespacePrefix
@@ -57,6 +83,18 @@
 
 ###  http://www.w3.org/2002/07/owl#versionInfo
 owl:versionInfo rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/homepage
+<http://xmlns.com/foaf/0.1/homepage> rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/name
+<http://xmlns.com/foaf/0.1/name> rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/identifier
+<https://schema.org/identifier> rdf:type owl:AnnotationProperty .
 
 
 ###  https://w3id.org/mod#createdWith
@@ -75,177 +113,217 @@ xsd:date rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
-###  https://w3id.org/yang/library#augmentsModule
-:augmentsModule rdf:type owl:ObjectProperty ;
+###  https://w3id.org/yang/library#belongsToModuleSet
+:belongsToModuleSet rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Module ;
+                    rdfs:range :ModuleSet ;
+                    rdfs:label "belongs to module set" .
+
+
+###  https://w3id.org/yang/library#containsModuleSet
+:containsModuleSet rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Schema ;
+                   rdfs:range :ModuleSet ;
+                   rdfs:label "contains module set" .
+
+
+###  https://w3id.org/yang/library#datastore
+:datastore rdf:type owl:ObjectProperty ;
+           rdfs:domain :YangLibrary ;
+           rdfs:range <https://w3id.org/yang/server#Datastore> ;
+           rdfs:label "datastore" .
+
+
+###  https://w3id.org/yang/library#definesFeature
+:definesFeature rdf:type owl:ObjectProperty ;
                 rdfs:domain :Module ;
-                rdfs:range :Module ;
-                rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-                rdfs:label "augments module" ;
-                rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+                rdfs:range :Feature ;
+                rdfs:label "defines feature" .
 
 
 ###  https://w3id.org/yang/library#deviatesModule
 :deviatesModule rdf:type owl:ObjectProperty ;
                 rdfs:domain :Module ;
                 rdfs:range :Module ;
-                rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-                rdfs:label "deviates module" ;
-                rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+                rdfs:label "deviates module" .
+
+
+###  https://w3id.org/yang/library#hasModuleImplementation
+:hasModuleImplementation rdf:type owl:ObjectProperty ;
+                         rdfs:domain <https://w3id.org/yang/server#Datastore> ;
+                         rdfs:range :ModuleImplementation ;
+                         rdfs:label "has module implementation" .
 
 
 ###  https://w3id.org/yang/library#implementsModule
 :implementsModule rdf:type owl:ObjectProperty ;
-                  rdfs:domain :ModuleSet ;
+                  rdfs:domain <https://w3id.org/yang/server#Datastore> ;
                   rdfs:range :Module ;
-                  rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-                  rdfs:label "implements module" ;
-                  rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+                  rdfs:label "implements module" .
 
 
-###  https://w3id.org/yang/library#implementsSubmodule
-:implementsSubmodule rdf:type owl:ObjectProperty ;
-                     rdfs:domain :ModuleSet ;
-                     rdfs:range :Submodule ;
-                     rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-                     rdfs:label "implements submodule" ;
-                     rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+###  https://w3id.org/yang/library#implementsSchema
+:implementsSchema rdf:type owl:ObjectProperty ;
+                  rdfs:domain <https://w3id.org/yang/server#Datastore> ;
+                  rdfs:range :Schema ;
+                  rdfs:label "implements schema" .
 
 
-###  https://w3id.org/yang/library#importsOnlyModule
-:importsOnlyModule rdf:type owl:ObjectProperty ;
-                   rdfs:domain :ModuleSet ;
-                   rdfs:range :Module ;
-                   rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-                   rdfs:label "imports only module" ;
-                   rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
-
-
-###  https://w3id.org/yang/library#importsOnlySubmodule
-:importsOnlySubmodule rdf:type owl:ObjectProperty ;
-                      rdfs:domain :ModuleSet ;
-                      rdfs:range :Submodule ;
-                      rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-                      rdfs:label "imports only submodule" ;
-                      rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+###  https://w3id.org/yang/library#importsModule
+:importsModule rdf:type owl:ObjectProperty ;
+               rdfs:domain <https://w3id.org/yang/server#Datastore> ;
+               rdfs:range :Module ;
+               rdfs:label "imports module" .
 
 
 ###  https://w3id.org/yang/library#includesSubmodule
 :includesSubmodule rdf:type owl:ObjectProperty ;
                    rdfs:domain :Module ;
                    rdfs:range :Submodule ;
-                   rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-                   rdfs:label "includes submodule" ;
-                   rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+                   rdfs:label "includes submodule" .
 
 
 ###  https://w3id.org/yang/library#moduleSet
 :moduleSet rdf:type owl:ObjectProperty ;
+           rdfs:domain :YangLibrary ;
            rdfs:range :ModuleSet ;
-           rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-           rdfs:label "module set" ;
-           rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+           rdfs:label "module set" .
 
 
 ###  https://w3id.org/yang/library#schema
 :schema rdf:type owl:ObjectProperty ;
+        rdfs:domain :YangLibrary ;
         rdfs:range :Schema ;
-        rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-        rdfs:label "schema" ;
-        rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+        rdfs:label "schema" .
 
 
-###  https://w3id.org/yang/server#datastore
-<https://w3id.org/yang/server#datastore> rdf:type owl:ObjectProperty ;
-                                         rdfs:domain <https://w3id.org/yang/server#YangServer> ;
-                                         rdfs:range <https://w3id.org/yang/server#Datastore> ;
-                                         rdfs:comment "Indicates the YANG datastore used by the YANG server." ;
-                                         rdfs:isDefinedBy <https://w3id.org/yang/server> ;
-                                         rdfs:label "datastore" .
+###  https://w3id.org/yang/library#usesFeature
+:usesFeature rdf:type owl:ObjectProperty ;
+             rdfs:domain :ModuleImplementation ;
+             rdfs:range :Feature ;
+             rdfs:label "uses feature" .
+
+
+###  https://w3id.org/yang/library#yangLibrary
+:yangLibrary rdf:type owl:ObjectProperty ;
+             rdfs:domain <https://w3id.org/yang/server#YangServer> ;
+             rdfs:range :YangLibrary ;
+             rdfs:label "yang library" .
+
+
+###  https://w3id.org/yang/server#server
+<https://w3id.org/yang/server#server> rdf:type owl:ObjectProperty ;
+                                      rdfs:domain <https://w3id.org/yang/server#Datastore> ;
+                                      rdfs:range <https://w3id.org/yang/server#YangServer> ;
+                                      rdfs:label "server" .
 
 
 #################################################################
 #    Data properties
 #################################################################
 
-###  http://purl.org/dc/terms/title
-<http://purl.org/dc/terms/title> rdf:type owl:DatatypeProperty .
+###  https://w3id.org/yang/library#featureName
+:featureName rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Feature ;
+             rdfs:label "feature name" .
 
 
 ###  https://w3id.org/yang/library#location
 :location rdf:type owl:DatatypeProperty ;
-          rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-          rdfs:label "location" ;
-          rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+          rdfs:domain :Module ;
+          rdfs:label "location" .
+
+
+###  https://w3id.org/yang/library#moduleName
+:moduleName rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Module ;
+            rdfs:label "module name" .
+
+
+###  https://w3id.org/yang/library#moduleSetId
+:moduleSetId rdf:type owl:DatatypeProperty ;
+             rdfs:domain :ModuleSet ;
+             rdfs:label "module set id" .
 
 
 ###  https://w3id.org/yang/library#namespace
 :namespace rdf:type owl:DatatypeProperty ;
            rdfs:domain :Module ;
-           rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-           rdfs:label "namespace" ;
-           rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+           rdfs:label "namespace" .
 
 
 ###  https://w3id.org/yang/library#revisionDate
 :revisionDate rdf:type owl:DatatypeProperty ;
-              rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-              rdfs:label "revision date" ;
-              rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+              rdfs:domain :Module ;
+              rdfs:label "revision date" .
+
+
+###  https://w3id.org/yang/library#schemaId
+:schemaId rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Schema ;
+          rdfs:label "schema id" .
+
+
+###  https://w3id.org/yang/library#yangLibraryId
+:yangLibraryId rdf:type owl:DatatypeProperty ;
+               rdfs:domain :YangLibrary ;
+               rdfs:label "yang library id" .
 
 
 #################################################################
 #    Classes
 #################################################################
 
+###  https://w3id.org/yang/library#Feature
+:Feature rdf:type owl:Class ;
+         rdfs:label "Feature" .
+
+
 ###  https://w3id.org/yang/library#Module
 :Module rdf:type owl:Class ;
-        rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-        rdfs:label "Module" ;
-        rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+        rdfs:label "Module" .
+
+
+###  https://w3id.org/yang/library#ModuleImplementation
+:ModuleImplementation rdf:type owl:Class ;
+                      rdfs:label "Module Implementation" .
 
 
 ###  https://w3id.org/yang/library#ModuleSet
 :ModuleSet rdf:type owl:Class ;
-           rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-           rdfs:label "Module Set" ;
-           rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+           rdfs:label "Module Set" .
 
 
 ###  https://w3id.org/yang/library#Schema
 :Schema rdf:type owl:Class ;
-        rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-        rdfs:label "Schema" ;
-        rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+        rdfs:label "Schema" .
 
 
 ###  https://w3id.org/yang/library#Submodule
 :Submodule rdf:type owl:Class ;
-           rdfs:isDefinedBy <https://w3id.org/yang/library#> ;
-           rdfs:label "Submodule" ;
-           rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8525> .
+           rdfs:subClassOf :Module ;
+           rdfs:label "Submodule" .
+
+
+###  https://w3id.org/yang/library#YangLibrary
+:YangLibrary rdf:type owl:Class ;
+             rdfs:label "Yang Library" .
 
 
 ###  https://w3id.org/yang/server#Datastore
 <https://w3id.org/yang/server#Datastore> rdf:type owl:Class ;
-                                         rdfs:comment "A conceptual place to store and access information. A datastore might be implemented, for example, using files, a database, flash memory locations, or combinations thereof. A datastore maps to an instantiated YANG data tree." ;
-                                         rdfs:isDefinedBy <https://w3id.org/yang/server> ;
                                          rdfs:label "Datastore" .
+
+
+###  https://w3id.org/yang/server#NetconfCapability
+<https://w3id.org/yang/server#NetconfCapability> rdf:type owl:Class ;
+                                                 rdfs:subClassOf :Feature ;
+                                                 rdfs:label "Netconf Capability" .
 
 
 ###  https://w3id.org/yang/server#YangServer
 <https://w3id.org/yang/server#YangServer> rdf:type owl:Class ;
-                                          rdfs:comment "An entity that provides access to YANG-defined data to a client, over some network management protocol." ;
-                                          rdfs:isDefinedBy <https://w3id.org/yang/server> ;
-                                          rdfs:label "Yang Server" ;
-                                          rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc7950> .
-
-
-#################################################################
-#    Annotations
-#################################################################
-
-<http://purl.org/dc/terms/title> rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
-                                 rdfs:label "title" .
+                                          rdfs:label "Yang Server" .
 
 
 ###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

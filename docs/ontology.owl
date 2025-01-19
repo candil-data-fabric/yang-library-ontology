@@ -1,27 +1,42 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="https://w3id.org/yang/library#"
      xml:base="https://w3id.org/yang/library"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:mod="https://w3id.org/mod#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:vann="http://purl.org/vocab/vann/"
-     xmlns:terms="http://purl.org/dc/terms/">
-    <owl:Ontology rdf:about="https://w3id.org/yang/library#">
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:schema="https://schema.org/">
+    <owl:Ontology rdf:about="https://w3id.org/yang/library">
         <owl:versionIRI rdf:resource="https://w3id.org/yang/library"/>
-        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2024-07-02</terms:created>
-        <terms:creator>Ignacio Dominguez Martinez-Casanueva</terms:creator>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2025-01-19</terms:created>
+        <terms:creator rdf:nodeID="genid1"/>
         <terms:description>
                                  Ontology that defines concepts for representing YANG modules and the different types of dependencies between them, as well as their implementation by a YANG server. These concepts have been extracted from YANG Library (RFC 8525).
                                  </terms:description>
         <terms:license rdf:resource="http://purl.org/NET/rdflicense/APACHE2.0"/>
+        <terms:publisher rdf:nodeID="genid2"/>
+        <terms:source rdf:resource="https://github.com/candil-data-fabric/yang-server-ontology"/>
         <terms:title>YANG Library Ontology</terms:title>
-        <vann:preferredNamespacePrefix>yanglib</vann:preferredNamespacePrefix>
+        <vann:preferredNamespacePrefix>yl</vann:preferredNamespacePrefix>
         <vann:preferredNamespaceUri rdf:resource="https://w3id.org/yang/library#"/>
-        <owl:versionInfo>0.9.0</owl:versionInfo>
+        <rdfs:label xml:lang="en">YANG Library Ontology</rdfs:label>
+        <owl:versionInfo>1.0.0</owl:versionInfo>
+        <mod:createdWith rdf:resource="https://chowlk.linkeddata.es/"/>
     </owl:Ontology>
+    <rdf:Description rdf:nodeID="genid1">
+        <foaf:name>Ignacio Dominguez Martinez-Casanueva</foaf:name>
+        <schema:identifier rdf:resource="https://orcid.org/0000-0002-8573-127X"/>
+    </rdf:Description>
+    <rdf:Description rdf:nodeID="genid2">
+        <foaf:homepage rdf:resource="https://github.com/candil-data-fabric"/>
+        <foaf:name>CANDIL Data Fabric</foaf:name>
+    </rdf:Description>
     
 
 
@@ -34,6 +49,27 @@
      -->
 
 
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/created -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/created"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/title -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/title"/>
     
 
 
@@ -65,17 +101,24 @@
     
 
 
+    <!-- http://purl.org/dc/terms/publisher -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/publisher"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/source -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/source"/>
+    
+
+
     <!-- http://purl.org/dc/terms/title -->
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/title"/>
-    
-
-
-    <!-- http://purl.org/vocab/vann/example -->
-
-
-    <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann/example"/>
     
 
 
@@ -97,6 +140,27 @@
 
 
     <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#versionInfo"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/homepage -->
+
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/foaf/0.1/homepage"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/name -->
+
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/foaf/0.1/name"/>
+    
+
+
+    <!-- https://schema.org/identifier -->
+
+
+    <owl:AnnotationProperty rdf:about="https://schema.org/identifier"/>
     
 
 
@@ -138,15 +202,46 @@
     
 
 
-    <!-- https://w3id.org/yang/library#augmentsModule -->
+    <!-- https://w3id.org/yang/library#belongsToModuleSet -->
 
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#augmentsModule">
+    <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#belongsToModuleSet">
         <rdfs:domain rdf:resource="https://w3id.org/yang/library#Module"/>
-        <rdfs:range rdf:resource="https://w3id.org/yang/library#Module"/>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
-        <rdfs:label>augments module</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
+        <rdfs:range rdf:resource="https://w3id.org/yang/library#ModuleSet"/>
+        <rdfs:label>belongs to module set</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/yang/library#containsModuleSet -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#containsModuleSet">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/library#Schema"/>
+        <rdfs:range rdf:resource="https://w3id.org/yang/library#ModuleSet"/>
+        <rdfs:label>contains module set</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/yang/library#datastore -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#datastore">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/library#YangLibrary"/>
+        <rdfs:range rdf:resource="https://w3id.org/yang/server#Datastore"/>
+        <rdfs:label>datastore</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/yang/library#definesFeature -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#definesFeature">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/library#Module"/>
+        <rdfs:range rdf:resource="https://w3id.org/yang/library#Feature"/>
+        <rdfs:label>defines feature</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -157,9 +252,18 @@
     <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#deviatesModule">
         <rdfs:domain rdf:resource="https://w3id.org/yang/library#Module"/>
         <rdfs:range rdf:resource="https://w3id.org/yang/library#Module"/>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
         <rdfs:label>deviates module</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/yang/library#hasModuleImplementation -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#hasModuleImplementation">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/server#Datastore"/>
+        <rdfs:range rdf:resource="https://w3id.org/yang/library#ModuleImplementation"/>
+        <rdfs:label>has module implementation</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -168,50 +272,31 @@
 
 
     <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#implementsModule">
-        <rdfs:domain rdf:resource="https://w3id.org/yang/library#ModuleSet"/>
+        <rdfs:domain rdf:resource="https://w3id.org/yang/server#Datastore"/>
         <rdfs:range rdf:resource="https://w3id.org/yang/library#Module"/>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
         <rdfs:label>implements module</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- https://w3id.org/yang/library#implementsSubmodule -->
+    <!-- https://w3id.org/yang/library#implementsSchema -->
 
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#implementsSubmodule">
-        <rdfs:domain rdf:resource="https://w3id.org/yang/library#ModuleSet"/>
-        <rdfs:range rdf:resource="https://w3id.org/yang/library#Submodule"/>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
-        <rdfs:label>implements submodule</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#implementsSchema">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/server#Datastore"/>
+        <rdfs:range rdf:resource="https://w3id.org/yang/library#Schema"/>
+        <rdfs:label>implements schema</rdfs:label>
     </owl:ObjectProperty>
     
 
 
-    <!-- https://w3id.org/yang/library#importsOnlyModule -->
+    <!-- https://w3id.org/yang/library#importsModule -->
 
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#importsOnlyModule">
-        <rdfs:domain rdf:resource="https://w3id.org/yang/library#ModuleSet"/>
+    <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#importsModule">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/server#Datastore"/>
         <rdfs:range rdf:resource="https://w3id.org/yang/library#Module"/>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
-        <rdfs:label>imports only module</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://w3id.org/yang/library#importsOnlySubmodule -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#importsOnlySubmodule">
-        <rdfs:domain rdf:resource="https://w3id.org/yang/library#ModuleSet"/>
-        <rdfs:range rdf:resource="https://w3id.org/yang/library#Submodule"/>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
-        <rdfs:label>imports only submodule</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
+        <rdfs:label>imports module</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -222,9 +307,7 @@
     <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#includesSubmodule">
         <rdfs:domain rdf:resource="https://w3id.org/yang/library#Module"/>
         <rdfs:range rdf:resource="https://w3id.org/yang/library#Submodule"/>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
         <rdfs:label>includes submodule</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
     </owl:ObjectProperty>
     
 
@@ -233,10 +316,9 @@
 
 
     <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#moduleSet">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/library#YangLibrary"/>
         <rdfs:range rdf:resource="https://w3id.org/yang/library#ModuleSet"/>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
         <rdfs:label>module set</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
     </owl:ObjectProperty>
     
 
@@ -245,23 +327,42 @@
 
 
     <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#schema">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/library#YangLibrary"/>
         <rdfs:range rdf:resource="https://w3id.org/yang/library#Schema"/>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
         <rdfs:label>schema</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- https://w3id.org/yang/server#datastore -->
+    <!-- https://w3id.org/yang/library#usesFeature -->
 
 
-    <owl:ObjectProperty rdf:about="https://w3id.org/yang/server#datastore">
+    <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#usesFeature">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/library#ModuleImplementation"/>
+        <rdfs:range rdf:resource="https://w3id.org/yang/library#Feature"/>
+        <rdfs:label>uses feature</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/yang/library#yangLibrary -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/yang/library#yangLibrary">
         <rdfs:domain rdf:resource="https://w3id.org/yang/server#YangServer"/>
-        <rdfs:range rdf:resource="https://w3id.org/yang/server#Datastore"/>
-        <rdfs:comment>Indicates the YANG datastore used by the YANG server.</rdfs:comment>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/server"/>
-        <rdfs:label>datastore</rdfs:label>
+        <rdfs:range rdf:resource="https://w3id.org/yang/library#YangLibrary"/>
+        <rdfs:label>yang library</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://w3id.org/yang/server#server -->
+
+
+    <owl:ObjectProperty rdf:about="https://w3id.org/yang/server#server">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/server#Datastore"/>
+        <rdfs:range rdf:resource="https://w3id.org/yang/server#YangServer"/>
+        <rdfs:label>server</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -278,10 +379,13 @@
     
 
 
-    <!-- http://purl.org/dc/terms/title -->
+    <!-- https://w3id.org/yang/library#featureName -->
 
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/dc/terms/title"/>
+    <owl:DatatypeProperty rdf:about="https://w3id.org/yang/library#featureName">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/library#Feature"/>
+        <rdfs:label>feature name</rdfs:label>
+    </owl:DatatypeProperty>
     
 
 
@@ -289,9 +393,28 @@
 
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/yang/library#location">
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
+        <rdfs:domain rdf:resource="https://w3id.org/yang/library#Module"/>
         <rdfs:label>location</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/yang/library#moduleName -->
+
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/yang/library#moduleName">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/library#Module"/>
+        <rdfs:label>module name</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/yang/library#moduleSetId -->
+
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/yang/library#moduleSetId">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/library#ModuleSet"/>
+        <rdfs:label>module set id</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -301,9 +424,7 @@
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/yang/library#namespace">
         <rdfs:domain rdf:resource="https://w3id.org/yang/library#Module"/>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
         <rdfs:label>namespace</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
     </owl:DatatypeProperty>
     
 
@@ -312,9 +433,28 @@
 
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/yang/library#revisionDate">
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
+        <rdfs:domain rdf:resource="https://w3id.org/yang/library#Module"/>
         <rdfs:label>revision date</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/yang/library#schemaId -->
+
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/yang/library#schemaId">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/library#Schema"/>
+        <rdfs:label>schema id</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://w3id.org/yang/library#yangLibraryId -->
+
+
+    <owl:DatatypeProperty rdf:about="https://w3id.org/yang/library#yangLibraryId">
+        <rdfs:domain rdf:resource="https://w3id.org/yang/library#YangLibrary"/>
+        <rdfs:label>yang library id</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -331,13 +471,29 @@
     
 
 
+    <!-- https://w3id.org/yang/library#Feature -->
+
+
+    <owl:Class rdf:about="https://w3id.org/yang/library#Feature">
+        <rdfs:label>Feature</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- https://w3id.org/yang/library#Module -->
 
 
     <owl:Class rdf:about="https://w3id.org/yang/library#Module">
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
         <rdfs:label>Module</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/yang/library#ModuleImplementation -->
+
+
+    <owl:Class rdf:about="https://w3id.org/yang/library#ModuleImplementation">
+        <rdfs:label>Module Implementation</rdfs:label>
     </owl:Class>
     
 
@@ -346,9 +502,7 @@
 
 
     <owl:Class rdf:about="https://w3id.org/yang/library#ModuleSet">
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
         <rdfs:label>Module Set</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
     </owl:Class>
     
 
@@ -357,9 +511,7 @@
 
 
     <owl:Class rdf:about="https://w3id.org/yang/library#Schema">
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
         <rdfs:label>Schema</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
     </owl:Class>
     
 
@@ -368,9 +520,17 @@
 
 
     <owl:Class rdf:about="https://w3id.org/yang/library#Submodule">
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/library#"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/yang/library#Module"/>
         <rdfs:label>Submodule</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc8525"/>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/yang/library#YangLibrary -->
+
+
+    <owl:Class rdf:about="https://w3id.org/yang/library#YangLibrary">
+        <rdfs:label>Yang Library</rdfs:label>
     </owl:Class>
     
 
@@ -379,9 +539,17 @@
 
 
     <owl:Class rdf:about="https://w3id.org/yang/server#Datastore">
-        <rdfs:comment>A conceptual place to store and access information. A datastore might be implemented, for example, using files, a database, flash memory locations, or combinations thereof. A datastore maps to an instantiated YANG data tree.</rdfs:comment>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/server"/>
         <rdfs:label>Datastore</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/yang/server#NetconfCapability -->
+
+
+    <owl:Class rdf:about="https://w3id.org/yang/server#NetconfCapability">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/yang/library#Feature"/>
+        <rdfs:label>Netconf Capability</rdfs:label>
     </owl:Class>
     
 
@@ -390,27 +558,8 @@
 
 
     <owl:Class rdf:about="https://w3id.org/yang/server#YangServer">
-        <rdfs:comment>An entity that provides access to YANG-defined data to a client, over some network management protocol.</rdfs:comment>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/yang/server"/>
         <rdfs:label>Yang Server</rdfs:label>
-        <rdfs:seeAlso rdf:resource="https://datatracker.ietf.org/doc/rfc7950"/>
     </owl:Class>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotations
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-
-    <rdf:Description rdf:about="http://purl.org/dc/terms/title">
-        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
-        <rdfs:label>title</rdfs:label>
-    </rdf:Description>
 </rdf:RDF>
 
 

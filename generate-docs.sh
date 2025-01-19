@@ -4,7 +4,7 @@
 docker run -ti --rm \
   -v `pwd`/ontology:/usr/local/widoco/in \
   -v `pwd`/docs:/usr/local/widoco/out \
-  ghcr.io/dgarijo/widoco:v1.4.25 -ontFile in/yang-library.owl \
+  ghcr.io/dgarijo/widoco:v1.4.25 -ontFile in/yang-library.ttl \
   -outFolder out -webVowl -oops  -getOntologyMetadata \
   -excludeIntroduction -htaccess -licensius
 
