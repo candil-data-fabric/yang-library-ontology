@@ -4,92 +4,131 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
-@base <https://netconf-rml-demo.org/> .
+@base <https://network-data-catalog.org/> .
 
-# Connection details to NETCONF server
-<netconf-server-1> a ys:NetconfServer ;
-    ys:socketAddress <netconf-server-1/socket-address> ;
-    ys:serverAccount <netconf-server-1/account> ;
-    ys:hostKeyVerification "false"
-.
+########################################
+# NETCONF Server
+########################################
 
-# In this example the NETCONF server is non-NMDA compatible.
-# Thus, only operational and running datastores are available.
-<netconf-server-1/datastores/operational> a ys:OperationalDatastore ;
-    ys:server <netconf-server-1>
-.
-<netconf-server-1/datastores/running> a ys:RunningDatastore ;
-    ys:server <netconf-server-1>
-.
+<NetconfServer/srl> a ys:NetconfServer ;
+    ys:socketAddress <NetconfServer/srl/SocketAddress> ;
+    ys:serverAccount <NetconfServer/srl/ServerAccount> ;
+    ys:hostKeyVerification "false";
+    yl:yangLibrary <NetconfServer/srl/YangLibrary/1k19sk2x1k19sk3yk4> .
 
-<netconf-server-1/socket-address> a observable:SocketAddress ;
-    observable:addressValue "192.168.10.10:830"
-.
+<NetconfServer/srl/SocketAddress> a observable:SocketAddress ;
+    observable:addressValue "172.100.100.11:830" .
 
-<netconf-server-1/account> a ys:ServerAccount ;
+<NetconfServer/srl/ServerAccount> a ys:ServerAccount ;
     ys:username "admin" ;
-    core:hasFacet <netconf-server-1/account/authentication>
-.
+    core:hasFacet <NetconfServer/srl/ServerAccount/authentication> .
 
-<netconf-server-1/account/authentication> a observable:AccountAuthenticationFacet ;
-    observable:password "admin" ;
-    observable:passwordType "plain-text"
-.
+<NetconfServer/srl/ServerAccount/authentication> a observable:AccountAuthenticationFacet ;
+    observable:password "NokiaSrl1!" ;
+    observable:passwordType "plain-text" .
 
-<netconf-server-1/yang-library> a yl:YangLibrary ;
-    yl:moduleSet <netconf-server-1/modules-set/default> ;
-    yl:datastore <netconf-server-1/datastores/running> ;
-    yl:datastore <netconf-server-1/datastores/operational>
-.
+########################################
+# YANG Library
+########################################
 
-<netconf-server-1/modules-set/default> a yl:ModuleSet ;
-    yl:moduleSetId "default"
-.
+<NetconfServer/srl/YangLibrary/1k19sk2x1k19sk3yk4> a yl:YangLibrary ;
+    yl:yangLibraryId "1k19sk2x1k19sk3yk4" ;
+    yl:moduleSet <NetconfServer/srl/ModuleSet/nokia> ;
+    yl:schema <NetconfServer/srl/Schema/nokia> .
 
-<netconf-server-1/datastores/operational> a ys:OperationalDatastore ;
-    ys:server <netconf-server-1> ;
-    ys:importsModule <modules/openconfig-aaa/2020-07-30> ;
-    ys:hasModuleImplementation <module-implementation/ietf-connectionless-oam/2019-04-16/netconf-server-1/datastores/operational>
-.
+<NetconfServer/srl/Datastore/operational> a ys:CandidateDatastore ;
+    ys:server <NetconfServer/srl> ;
+    yl:implementsSchema <NetconfServer/srl/Schema/nokia> .
 
-<modules/openconfig-aaa/2020-07-30> a yl:Module ;
-    yl:moduleName "openconfig-aaa" ;
-    yl:revisionDate "2020-07-30"^^xsd:date ;
-    yl:namespace "http://openconfig.net/yang/aaa"^^xsd:anyURI ;
-    yl:includesSubmodule <modules/openconfig-aaa-radius/2020-07-30> ,
-                         <modules/openconfig-aaa-tacacs/2020-07-30>
-.
+<NetconfServer/srl/Datastore/operational> a ys:IntendedDatastore ;
+    ys:server <NetconfServer/srl> ;
+    yl:implementsSchema <NetconfServer/srl/Schema/nokia> .
 
-<modules/openconfig-aaa-radius/2020-07-30> a yl:Submodule ;
-    yl:moduleName "openconfig-aaa-radius" ;
-    yl:revisionDate "2020-07-30"^^xsd:date
-.
+<NetconfServer/srl/Datastore/operational> a ys:OperationalDatastore ;
+    ys:server <NetconfServer/srl> ;
+    yl:implementsSchema <NetconfServer/srl/Schema/nokia> .
 
-<modules/openconfig-aaa-tacacs/2020-07-30> a yl:Submodule ;
-    yl:moduleName "openconfig-aaa-tacacs" ;
-    yl:revisionDate "2020-07-30"^^xsd:date
-.
+<NetconfServer/srl/Datastore/running> a ys:RunningDatastore ;
+    ys:server <NetconfServer/srl> ;
+    yl:implementsSchema <NetconfServer/srl/Schema/nokia> .
 
-<module-implementation/ietf-connectionless-oam/2019-04-16/netconf-server-1/datastores/operational> a yl:ModuleImplementation ;
-    yl:implementsModule <modules/ietf-connectionless-oam/2019-04-16> ;
-    yl:usesFeature <modules/ietf-connectionless-oam/2019-04-16/feature/continuity-check> ,
-                   <modules/ietf-connectionless-oam/2019-04-16/feature/path-discovery>
-.
+<NetconfServer/srl/Datastore/operational> a ys:StartupDatastore ;
+    ys:server <NetconfServer/srl> ;
+    yl:implementsSchema <NetconfServer/srl/Schema/nokia> .
 
-<modules/ietf-connectionless-oam/2019-04-16/feature/continuity-check> a yl:Feature ;
-    yl:featureName "continuity-check"
-.
+<NetconfServer/srl/Schema/nokia> a yl:Schema ;
+    yl:schemaId "nokia" ;
+    yl:containsModuleSet <NetconfServer/srl/ModuleSet/nokia> .
 
-<modules/ietf-connectionless-oam/2019-04-16/feature/path-discovery> a yl:Feature ;
-    yl:featureName "path-discovery"
-.
+<NetconfServer/srl/ModuleSet/nokia> a yl:ModuleSet ;
+    yl:moduleSetId "nokia" ;
+    ys:moduleImport <NetconfServer/srl/ModuleSet/nokia/ModuleImport/iana-if-type/2014-05-08> ,
+                    <NetconfServer/srl/ModuleSet/nokia/ModuleImport/openconfig-aft/2023-09-26> ;
+    ys:moduleImplementation <NetconfServer/srl/ModuleSet/nokia/ModuleImplementation/openconfig-interfaces/2023-11-06> ,
+                            <NetconfServer/srl/ModuleSet/nokia/ModuleImplementation/openconfig-srl-deviations/2024-10-31> .
 
-<modules/ietf-connectionless-oam/2019-04-16> a yl:Module ;
-    yl:moduleName "ietf-connectionless-oam" ;
-    yl:revisionDate "2019-04-16"^^xsd:date ;
-    yl:namespace "urn:ietf:params:xml:ns:yang:ietf-connectionless-oam"^^xsd:anyURI ;
-    yl:definesFeature <modules/ietf-connectionless-oam/2019-04-16/feature/continuity-check> ,
-                      <modules/ietf-connectionless-oam/2019-04-16/feature/path-discovery> ;
-    yl:deviatesModule <modules/huawei-ietf-connectionless-oam-deviations-nos/2023-02-24>
-.
+########################################
+# Imported YANG Modules
+########################################
+
+<NetconfServer/srl/ModuleSet/nokia/ModuleImport/iana-if-type/2014-05-08> a yl:ModuleImport ;
+    yl:location "file:///opt/srlinux/models/iana/iana-if-type.yang"^^xsd:anyURI ;
+    yl:importedModule <Module/iana-if-type/2014-05-08> .
+
+<Module/iana-if-type/2014-05-08> a yl:Module ;
+    yl:moduleName "iana-if-type" ;
+    yl:revisionDate "2014-05-08"^^xsd:date ;
+    yl:namespace "urn:ietf:params:xml:ns:yang:iana-if-type"^^xsd:anyURI ;
+    yl:includesSubmodule <Module/openconfig-aft-common/2023-09-26> ,
+                         <Module/openconfig-aft-ethernet/2023-09-26> .
+
+<NetconfServer/srl/ModuleSet/nokia/ModuleImport/openconfig-aft/2023-09-26> a yl:ModuleImport ;
+    yl:location "file:///opt/srlinux/models/openconfig/aft/openconfig-aft.yang"^^xsd:anyURI ;
+    yl:importedModule <Module/openconfig-aft/2023-09-26> .
+
+<Module/openconfig-aft/2023-09-26> a yl:Module ;
+    yl:moduleName "openconfig-aft" ;
+    yl:revisionDate "2023-09-26"^^xsd:date ;
+    yl:namespace "http://openconfig.net/yang/aft"^^xsd:anyURI ;
+    yl:includesSubmodule <Module/openconfig-aft-common/2023-09-26> ,
+                         <Module/openconfig-aft-ethernet/2023-09-26> .
+
+<Module/openconfig-aft-common/2023-09-26> a yl:Submodule ;
+    yl:moduleName "openconfig-aft-common" ;
+    yl:revisionDate "2023-09-26"^^xsd:date .
+
+<Module/openconfig-aft-ethernet/2023-09-26> a yl:Submodule ;
+    yl:moduleName "openconfig-aft-ethernet" ;
+    yl:revisionDate "2023-09-26"^^xsd:date .
+
+########################################
+# Implemented YANG Modules
+########################################
+
+<NetconfServer/srl/ModuleSet/nokia/ModuleImplementation/openconfig-interfaces/2023-11-06> a yl:ModuleImplementation ;
+    yl:implementsModule <Module/openconfig-interfaces/2023-11-06> ;
+    yl:location "file:///opt/srlinux/models/openconfig/interfaces/openconfig-interfaces.yang"^^xsd:anyURI .
+
+<Module/openconfig-interfaces/2023-11-06> a yl:Module ;
+    yl:moduleName "openconfig-interfaces" ;
+    yl:revisionDate "2023-11-06"^^xsd:date ;
+    yl:namespace "http://openconfig.net/yang/interfaces"^^xsd:anyURI .
+
+<NetconfServer/srl/ModuleSet/nokia/ModuleImplementation/openconfig-srl-deviations/2024-10-31> a yl:ModuleImplementation ;
+    yl:implementsModule <Module/openconfig-srl-deviations/2024-10-31> ;
+    yl:location "file:///opt/srlinux/deviations/openconfig/openconfig-srl-deviations.yang"^^xsd:anyURI .
+    yl:usesFeature <Module/openconfig-srl-deviations/2019-04-16/Feature/ipv4-unnumbered> ,
+                   <Module/openconfig-srl-deviations/2019-04-16/Feature/interface-evpn-internal-tags> .
+
+<Module/openconfig-srl-deviations/2019-04-16/Feature/ipv4-unnumbered> a yl:Feature ;
+    yl:featureName "ipv4-unnumbered" .
+
+<Module/openconfig-srl-deviations/2019-04-16/Feature/interface-evpn-internal-tags> a yl:Feature ;
+    yl:featureName "interface-evpn-internal-tags" .
+
+<Module/openconfig-srl-deviations/2024-10-31> a yl:Module ;
+    yl:moduleName "openconfig-srl-deviations" ;
+    yl:revisionDate "2024-10-31"^^xsd:date ;
+    yl:namespace "urn:nokia.com:srlinux:openconfig:openconfig-srl-deviations"^^xsd:anyURI ;
+    yl:deviatesModule <Module/openconfig-interfaces/2023-11-06> .
 
