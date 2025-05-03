@@ -63,9 +63,9 @@
 
 <NetconfServer/srl/ModuleSet/nokia> a yl:ModuleSet ;
     yl:moduleSetId "nokia" ;
-    ys:moduleImport <NetconfServer/srl/ModuleSet/nokia/ModuleImport/iana-if-type/2014-05-08> ,
+    yl:moduleImport <NetconfServer/srl/ModuleSet/nokia/ModuleImport/iana-if-type/2014-05-08> ,
                     <NetconfServer/srl/ModuleSet/nokia/ModuleImport/openconfig-aft/2023-09-26> ;
-    ys:moduleImplementation <NetconfServer/srl/ModuleSet/nokia/ModuleImplementation/openconfig-interfaces/2023-11-06> ,
+    yl:moduleImplementation <NetconfServer/srl/ModuleSet/nokia/ModuleImplementation/openconfig-interfaces/2023-11-06> ,
                             <NetconfServer/srl/ModuleSet/nokia/ModuleImplementation/openconfig-srl-deviations/2024-10-31> .
 
 ########################################
@@ -107,7 +107,7 @@
 ########################################
 
 <NetconfServer/srl/ModuleSet/nokia/ModuleImplementation/openconfig-interfaces/2023-11-06> a yl:ModuleImplementation ;
-    yl:implementsModule <Module/openconfig-interfaces/2023-11-06> ;
+    yl:implementedModule <Module/openconfig-interfaces/2023-11-06> ;
     yl:location "file:///opt/srlinux/models/openconfig/interfaces/openconfig-interfaces.yang"^^xsd:anyURI .
 
 <Module/openconfig-interfaces/2023-11-06> a yl:Module ;
@@ -116,7 +116,7 @@
     yl:namespace "http://openconfig.net/yang/interfaces"^^xsd:anyURI .
 
 <NetconfServer/srl/ModuleSet/nokia/ModuleImplementation/openconfig-srl-deviations/2024-10-31> a yl:ModuleImplementation ;
-    yl:implementsModule <Module/openconfig-srl-deviations/2024-10-31> ;
+    yl:implementedModule <Module/openconfig-srl-deviations/2024-10-31> ;
     yl:location "file:///opt/srlinux/deviations/openconfig/openconfig-srl-deviations.yang"^^xsd:anyURI ;
     yl:usesFeature <Module/openconfig-srl-deviations/2019-04-16/Feature/ipv4-unnumbered> ,
                    <Module/openconfig-srl-deviations/2019-04-16/Feature/interface-evpn-internal-tags> .
