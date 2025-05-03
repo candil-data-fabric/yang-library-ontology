@@ -1,0 +1,686 @@
+@prefix : <https://w3id.org/yang/server#> .
+@prefix ys: <https://w3id.org/yang/server#> .
+@prefix mod: <https://w3id.org/mod#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rml: <http://w3id.org/rml/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix schema: <https://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
+@base <https://w3id.org/yang/server#> .
+
+<https://w3id.org/yang/server#> rdf:type owl:Ontology ;
+                                owl:versionIRI <https://w3id.org/yang/server> ;
+                                dcterms:created "2025-01-18"^^xsd:date ;
+                                dcterms:creator [ foaf:name "Ignacio Dominguez Martinez-Casanueva" ;
+                                                  schema:identifier <https://orcid.org/0000-0002-8573-127X>
+                                                ] ;
+                                dcterms:description """
+                                 Ontology that defines core concepts for representing YANG servers, including connection details and the available YANG datastores, along with operations for retrieving YANG data from a YANG server. The goal of this ontology is to enable the declarative and abstract of the interactions with YANG servers for monitoring and configuration purposes. In this sense, the ontology can become the basis for building a knowledge graph from YANG data obtained from YANG servers.
+                                 """ ;
+                                dcterms:license <http://purl.org/NET/rdflicense/APACHE2.0> ;
+                                dcterms:publisher [ foaf:homepage <https://github.com/candil-data-fabric> ;
+                                                    foaf:name "CANDIL Data Fabric"
+                                                  ] ;
+                                dcterms:source <https://github.com/candil-data-fabric/yang-server-ontology> ;
+                                dcterms:title "YANG Server Ontology" ;
+                                vann:preferredNamespacePrefix "ys" ;
+                                vann:preferredNamespaceUri ys: ;
+                                rdfs:label "YANG Server Ontology"@en ;
+                                owl:versionInfo "1.6.0" ;
+                                mod:createdWith <https://chowlk.linkeddata.es/> .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/created
+dcterms:created rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/identifier
+dcterms:identifier rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/publisher
+dcterms:publisher rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/source
+dcterms:source rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/example
+vann:example rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#versionInfo
+owl:versionInfo rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/homepage
+foaf:homepage rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/name
+foaf:name rdf:type owl:AnnotationProperty .
+
+
+###  https://schema.org/identifier
+schema:identifier rdf:type owl:AnnotationProperty .
+
+
+###  https://w3id.org/mod#createdWith
+mod:createdWith rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://qudt.org/schema/qudt/unit
+qudt:unit rdf:type owl:ObjectProperty ;
+          rdfs:range qudt:Unit ;
+          rdfs:isDefinedBy <http://qudt.org/2.1/schema/qudt> ;
+          rdfs:label "unit" .
+
+
+###  https://w3id.org/yang/server#capability
+ys:capability rdf:type owl:ObjectProperty ;
+              rdfs:domain ys:NetconfServer ;
+              rdfs:range ys:NetconfCapability ;
+              rdfs:comment "Refers to the NETCONF capability supported by the NETCONF server." ;
+              rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+              rdfs:label "capability" .
+
+
+###  https://w3id.org/yang/server#datastore
+ys:datastore rdf:type owl:ObjectProperty ;
+             rdfs:domain ys:YangServer ;
+             rdfs:range ys:Datastore ;
+             rdfs:comment "Indicates the YANG datastore used by the YANG server." ;
+             rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+             rdfs:label "datastore" .
+
+
+###  https://w3id.org/yang/server#filter
+ys:filter rdf:type owl:ObjectProperty ;
+          rdfs:domain ys:Operation ;
+          rdfs:range ys:Filter ;
+          rdfs:comment "Refers to the YANG filter used when accessing the YANG server using a network management protocol." ;
+          rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+          rdfs:label "filter" .
+
+
+###  https://w3id.org/yang/server#namespace
+ys:namespace rdf:type owl:ObjectProperty ;
+             rdfs:domain ys:XPathFilter ;
+             rdfs:range ys:Namespace ;
+             rdfs:comment "Refers to an XML namespace used in the XPath expression." ;
+             rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+             rdfs:label "namespace" .
+
+
+###  https://w3id.org/yang/server#period
+ys:period rdf:type owl:ObjectProperty ;
+          rdfs:domain ys:PeriodicSubscription ;
+          rdfs:range ys:Period ;
+          rdfs:comment "Refers to period interval with which to report updates in a periodic subscription." ;
+          rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+          rdfs:label "period" ;
+          rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8641> .
+
+
+###  https://w3id.org/yang/server#server
+ys:server rdf:type owl:ObjectProperty ;
+          rdfs:domain ys:Datastore ;
+          rdfs:range ys:YangServer ;
+          rdfs:comment "Refers to the YANG server that runs the YANG datastore." ;
+          rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+          rdfs:label "server" .
+
+
+###  https://w3id.org/yang/server#socketAddress
+ys:socketAddress rdf:type owl:ObjectProperty ;
+                 rdfs:domain ys:YangServer ;
+                 rdfs:range observable:SocketAddress ;
+                 rdfs:comment "Refers to the socket address for connecting to the YANG server." ;
+                 rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                 rdfs:label "socket address" .
+
+
+###  https://w3id.org/yang/server#sourceDatastore
+ys:sourceDatastore rdf:type owl:ObjectProperty ;
+                   rdfs:domain ys:Operation ;
+                   rdfs:range ys:Datastore ;
+                   rdfs:comment "Refers to the YANG datastore of the source YANG server to be selected in the YANG operation." ;
+                   rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                   rdfs:label "source datastore" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://qudt.org/schema/qudt/numericValue
+qudt:numericValue rdf:type owl:DatatypeProperty ;
+                  rdfs:isDefinedBy <http://qudt.org/2.1/schema/qudt> ;
+                  rdfs:label "numeric value" .
+
+
+###  http://xmlns.com/foaf/0.1/accountName
+foaf:accountName rdf:type owl:DatatypeProperty ;
+                 rdfs:isDefinedBy foaf: ;
+                 rdfs:label "account name" .
+
+
+###  https://ontology.unifiedcyberontology.org/uco/observable/addressValue
+observable:addressValue rdf:type owl:DatatypeProperty ;
+                        vann:example "192.168.1.10:830" ;
+                        rdfs:isDefinedBy observable: ;
+                        rdfs:label "addressValue" .
+
+
+###  https://ontology.unifiedcyberontology.org/uco/observable/userName
+observable:userName rdf:type owl:DatatypeProperty ;
+                    rdfs:isDefinedBy observable: ;
+                    rdfs:label "userName" .
+
+
+###  https://w3id.org/yang/server#filterValue
+ys:filterValue rdf:type owl:DatatypeProperty ;
+               rdfs:domain ys:Filter ;
+               rdfs:range xsd:string ;
+               rdfs:comment "Value used by filter to access YANG data of the NETCONF server." ;
+               rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+               rdfs:label "filter value" ;
+               rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc6241> .
+
+
+###  https://w3id.org/yang/server#hostKeyVerification
+ys:hostKeyVerification rdf:type owl:DatatypeProperty ;
+                       rdfs:domain ys:NetconfServer ;
+                       rdfs:range xsd:boolean ;
+                       rdfs:comment "Indicates whether SSH host key is verified to access the NETCONF server." ;
+                       rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                       rdfs:label "host key verification" .
+
+
+###  https://w3id.org/yang/server#namespacePrefix
+ys:namespacePrefix rdf:type owl:DatatypeProperty ;
+                   rdfs:domain ys:Namespace ;
+                   rdfs:range xsd:string ;
+                   rdfs:comment "Prefix of the XML namespace." ;
+                   rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                   rdfs:label "namespace prefix" .
+
+
+###  https://w3id.org/yang/server#namespaceURL
+ys:namespaceURL rdf:type owl:DatatypeProperty ;
+                rdfs:domain ys:Namespace ;
+                rdfs:range xsd:anyURI ;
+                rdfs:comment "URL of the XML namespace." ;
+                rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                rdfs:label "namespace url" .
+
+
+###  https://w3id.org/yang/server#netconfCapabilityId
+ys:netconfCapabilityId rdf:type owl:DatatypeProperty ;
+                       rdfs:domain ys:NetconfCapability ;
+                       rdfs:range xsd:anyURI ;
+                       rdfs:comment "Represents the URI that identifies the NETCONF capability." ;
+                       rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                       rdfs:label "netconf capability id" .
+
+
+###  https://w3id.org/yang/server#netconfCapabilityName
+ys:netconfCapabilityName rdf:type owl:DatatypeProperty ;
+                       rdfs:domain ys:NetconfCapability ;
+                       rdfs:range xsd:string ;
+                       rdfs:comment "Represents the name of the NETCONF capability." ;
+                       rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                       rdfs:label "netconf capability name" .
+
+
+###  https://w3id.org/yang/server#netconfCapabilityVersion
+ys:netconfCapabilityVersion rdf:type owl:DatatypeProperty ;
+                       rdfs:domain ys:NetconfCapability ;
+                       rdfs:range xsd:anyURI ;
+                       rdfs:comment "Represents the version of the NETCONF capability." ;
+                       rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                       rdfs:label "netconf capability version" .
+
+
+###  https://w3id.org/yang/server#subtreeValue
+ys:subtreeValue rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf ys:filterValue ;
+                rdfs:domain ys:SubtreeFilter ;
+                rdfs:range rdf:XMLLiteral ;
+                vann:example '''
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <interface>
+  </interface>
+</interfaces>''';
+                rdfs:comment "XML Subtree filter used to access YANG data of the NETCONF server." ;
+                rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                rdfs:label "subtree value" .
+
+
+###  https://w3id.org/yang/server#username
+ys:username rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf foaf:accountName ,
+                               observable:userName ;
+            rdfs:domain ys:ServerAccount ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Username for accessing the YANG server." ;
+            rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+            rdfs:label "username" .
+
+
+###  https://w3id.org/yang/server#xpathValue
+ys:xpathValue rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf ys:filterValue ;
+              rdfs:domain ys:XPathFilter ;
+              rdfs:range xsd:string ;
+              vann:example "/ietf-interfaces:interfaces" ;
+              rdfs:comment "XPath expression used to access YANG data of the YANG server." ;
+              rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+              rdfs:label "xpath value" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://qudt.org/schema/qudt/Unit
+qudt:Unit rdf:type owl:Class ;
+          rdfs:isDefinedBy <http://qudt.org/2.1/schema/qudt> ;
+          rdfs:label "Unit" .
+
+
+###  http://w3id.org/rml/XPathReferenceFormulation
+rml:XPathReferenceFormulation rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/OnlineAccount
+foaf:OnlineAccount rdf:type owl:Class ;
+                   rdfs:isDefinedBy foaf: ;
+                   rdfs:label "Online Account" .
+
+
+###  https://ontology.unifiedcyberontology.org/uco/observable/SocketAddress
+observable:SocketAddress rdf:type owl:Class ;
+                         rdfs:isDefinedBy observable: ;
+                         rdfs:label "SocketAddress" .
+
+
+###  https://ontology.unifiedcyberontology.org/uco/observable/UserAccount
+observable:UserAccount rdf:type owl:Class ;
+                       rdfs:isDefinedBy observable: ;
+                       rdfs:label "UserAccount" .
+
+
+###  https://w3id.org/yang/server#CandidateDatastore
+ys:CandidateDatastore rdf:type owl:Class ;
+                      rdfs:subClassOf ys:ConventionalDatastore ;
+                      rdfs:comment "A configuration datastore that can be manipulated without impacting the device's running configuration datastore and that can be committed to the running configuration datastore." ;
+                      rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                      rdfs:label "Candidate Datastore" ;
+                      rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8342> .
+
+
+###  https://w3id.org/yang/server#ConventionalDatastore
+ys:ConventionalDatastore rdf:type owl:Class ;
+                         rdfs:subClassOf ys:Datastore ;
+                         rdfs:comment "One of the following set of configuration datastores: `<running>`, `<startup>`, `<candidate>`, and `<intended>`.  These datastores share a common datastore schema, and protocol operations allow copying data between these datastores. The term \"conventional\" is chosen as a generic umbrella term for these datastores." ;
+                         rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                         rdfs:label "Conventional Datastore" ;
+                         rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8342> .
+
+
+###  https://w3id.org/yang/server#Datastore
+ys:Datastore rdf:type owl:Class ;
+             rdfs:comment "A conceptual place to store and access information. A datastore might be implemented, for example, using files, a database, flash memory locations, or combinations thereof. A datastore maps to an instantiated YANG data tree." ;
+             rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+             rdfs:label "Datastore" ;
+             rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8342> .
+
+
+###  https://w3id.org/yang/server#DynamicDatastore
+ys:DynamicDatastore rdf:type owl:Class ;
+                    rdfs:subClassOf ys:Datastore ;
+                    rdfs:comment "A configuration datastore holding configuration obtained dynamically during the operation of a device through interaction with other systems, rather than through one of the conventional configuration datastores." ;
+                    rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                    rdfs:label "Dynamic Datastore" ;
+                    rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8342> .
+
+
+###  https://w3id.org/yang/server#Filter
+ys:Filter rdf:type owl:Class ;
+          rdfs:comment "Evaluation criteria that may be applied to fetch data from a given YANG server." ;
+          rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+          rdfs:label "Filter" ;
+          rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc6241> .
+
+
+###  https://w3id.org/yang/server#IntendedDatastore
+ys:IntendedDatastore rdf:type owl:Class ;
+                     rdfs:subClassOf ys:ConventionalDatastore ;
+                     rdfs:comment "A configuration datastore holding the complete intended configuration of the device. This represents the configuration after all configuration transformations to <running> have been performed and is the configuration that the system attempts to apply." ;
+                     rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                     rdfs:label "Intended Datastore" ;
+                     rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8342> .
+
+
+###  https://w3id.org/yang/server#Namespace
+ys:Namespace rdf:type owl:Class ;
+             rdfs:comment "Represents an XML namespace used in the XPath expression." ;
+             rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+             rdfs:label "Namespace" .
+
+
+###  https://w3id.org/yang/server#NetconfCapability
+ys:NetconfCapability rdf:type owl:Class ;
+                     rdfs:comment "NETCONF capability." ;
+                     rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                     rdfs:label "Netconf Capability" ;
+                     rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc6241> .
+
+
+###  https://w3id.org/yang/server#NetconfQuerySource
+ys:NetconfQuerySource rdf:type owl:Class ;
+                      rdfs:subClassOf rml:XPathReferenceFormulation ;
+                      rdfs:comment "Represents a NETCONF query operation in RML mappings." ;
+                      rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                      rdfs:label "Netconf Query Source" ;
+                      rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc6241> ,
+                                   <https://w3id.org/yang/w3id.org/rml/io/spec> .
+
+
+###  https://w3id.org/yang/server#NetconfServer
+ys:NetconfServer rdf:type owl:Class ;
+                 rdfs:subClassOf ys:YangServer ;
+                 rdfs:comment "YANG server that can be managed via the NETCONF protocol." ;
+                 rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                 rdfs:label "Netconf Server" ;
+                 rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc6241> .
+
+
+###  https://w3id.org/yang/server#OnChangeSubscription
+ys:OnChangeSubscription rdf:type owl:Class ;
+                        rdfs:subClassOf ys:Subscription ;
+                        rdfs:comment "A datastore subscription with updates that are triggered when changes in subscribed datastore nodes are detected." ;
+                        rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                        rdfs:label "On-change Subscription" ;
+                        rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8641> .
+
+
+###  https://w3id.org/yang/server#Operation
+ys:Operation rdf:type owl:Class ;
+             rdfs:comment "Represents a Operation to a YANG server using the corresponding network management protocol." ;
+             rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+             rdfs:label "Operation" ;
+             rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc6241> .
+
+
+###  https://w3id.org/yang/server#OperationalDatastore
+ys:OperationalDatastore rdf:type owl:Class ;
+                        rdfs:subClassOf ys:Datastore ;
+                        rdfs:comment "A datastore holding the complete operational state of the device." ;
+                        rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                        rdfs:label "Operational Datastore" ;
+                        rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8342> .
+
+
+###  https://w3id.org/yang/server#Period
+ys:Period rdf:type owl:Class ;
+          rdfs:comment "Represents the period interval with which to report updates in a periodic subscription." ;
+          rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+          rdfs:label "Period" ;
+          rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8641> .
+
+
+###  https://w3id.org/yang/server#PeriodicSubscription
+ys:PeriodicSubscription rdf:type owl:Class ;
+                        rdfs:subClassOf ys:Subscription ;
+                        rdfs:comment "A datastore subscription with updates that are triggered periodically according to some time interval." ;
+                        rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                        rdfs:label "Periodic Subscription" ;
+                        rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8641> .
+
+
+###  https://w3id.org/yang/server#Query
+ys:Query rdf:type owl:Class ;
+         rdfs:subClassOf ys:Operation ;
+         rdfs:comment "Represents a query operation to a YANG server using the corresponding network management protocol." ;
+         rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+         rdfs:label "Query" ;
+         rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc6241> .
+
+
+###  https://w3id.org/yang/server#RunningDatastore
+ys:RunningDatastore rdf:type owl:Class ;
+                    rdfs:subClassOf ys:ConventionalDatastore ;
+                    rdfs:comment "A configuration datastore holding the current configuration of the device.  It may include configuration that requires further transformations before it can be applied." ;
+                    rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                    rdfs:label "Running Datastore" ;
+                    rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8342> .
+
+
+###  https://w3id.org/yang/server#ServerAccount
+ys:ServerAccount rdf:type owl:Class ;
+                 rdfs:subClassOf foaf:OnlineAccount ,
+                                 observable:UserAccount ;
+                 rdfs:comment "Represents an account used for accessing the YANG server." ;
+                 rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                 rdfs:label "Server Account" ;
+                 rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc6241> .
+
+
+###  https://w3id.org/yang/server#StartupDatastore
+ys:StartupDatastore rdf:type owl:Class ;
+                    rdfs:subClassOf ys:ConventionalDatastore ;
+                    rdfs:comment "A configuration datastore holding the configuration loaded by the device into the running configuration datastore when it boots." ;
+                    rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                    rdfs:label "Startup Datastore" ;
+                    rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8342> .
+
+
+###  https://w3id.org/yang/server#Subscription
+ys:Subscription rdf:type owl:Class ;
+                rdfs:subClassOf ys:Operation ;
+                rdfs:comment "Represents a subscription operation to a YANG server using the corresponding network management protocol." ;
+                rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                rdfs:label "Subscription" ;
+                rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc8641> .
+
+
+###  https://w3id.org/yang/server#SubtreeFilter
+ys:SubtreeFilter rdf:type owl:Class ;
+                 rdfs:subClassOf ys:Filter ;
+                 rdfs:comment "Evaluation criteria based on XML subtree expression." ;
+                 rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                 rdfs:label "Subtree Filter" ;
+                 rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc6241> .
+
+
+###  https://w3id.org/yang/server#XPathFilter
+ys:XPathFilter rdf:type owl:Class ;
+               rdfs:subClassOf ys:Filter ;
+               rdfs:comment "Evaluation criteria based on XPath expression." ;
+               rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+               rdfs:label "XPath Filter" ;
+               rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc6241> .
+
+
+###  https://w3id.org/yang/server#YangServer
+ys:YangServer rdf:type owl:Class ;
+              rdfs:comment "An entity that provides access to YANG-defined data to a client, over some network management protocol." ;
+              rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+              rdfs:label "Yang Server" ;
+              rdfs:seeAlso <https://datatracker.ietf.org/doc/rfc7950> .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/yang/server#CandidateCapability
+ys:CandidateCapability rdf:type owl:NamedIndividual ,
+                                ys:NetconfCapability ;
+                       ys:netconfCapabilityId "urn:ietf:params:netconf:capability:candidate:1.0" ;
+                       ys:netconfCapabilityName "candidate" ;
+                       ys:netconfCapabilityVersion "1.0" ;
+                       rdfs:comment "The candidate configuration capability, `:candidate`, indicates that the device supports a candidate configuration datastore, which is used to hold configuration data that can be manipulated without impacting the device's current configuration." ;
+                       rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                       rdfs:label "Candidate Capability" ;
+                       rdfs:seeAlso <https://datatracker.ietf.org/doc/html/rfc6241#section-8.3> .
+
+
+###  https://w3id.org/yang/server#ConfirmedCommitCapability
+ys:ConfirmedCommitCapability rdf:type owl:NamedIndividual ,
+                                      ys:NetconfCapability ;
+                             ys:netconfCapabilityId "urn:ietf:params:netconf:capability:confirmed-commit:1.1" ;
+                             ys:netconfCapabilityName "confirmed-commit" ;
+                             ys:netconfCapabilityVersion "1.1" ;
+                             rdfs:comment "The `:confirmed-commit:1.1` capability indicates that the server will support the `<cancel-commit>` operation and the `<confirmed>`, `<confirm-timeout>`, `<persist>`, and `<persist-id>` parameters for the `<commit>` operation." ;
+                             rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                             rdfs:label "Confirmed Commit Capability" ;
+                             rdfs:seeAlso <https://datatracker.ietf.org/doc/html/rfc6241#section-8.4> .
+
+
+###  https://w3id.org/yang/server#StartupCapability
+ys:StartupCapability rdf:type owl:NamedIndividual ,
+                                      ys:NetconfCapability ;
+                             ys:netconfCapabilityId "urn:ietf:params:netconf:capability:startup:1.0" ;
+                             ys:netconfCapabilityName "startup" ;
+                             ys:netconfCapabilityVersion "1.0" ;
+                             rdfs:comment "The device supports separate running and startup configuration datastores. The startup configuration is loaded by the device when it boots." ;
+                             rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                             rdfs:label "Startup Capability" ;
+                             rdfs:seeAlso <https://datatracker.ietf.org/doc/html/rfc6241#section-8.7> .
+
+
+###  https://w3id.org/yang/server#RollbackOnErrorCapability
+ys:RollbackOnErrorCapability rdf:type owl:NamedIndividual ,
+                                      ys:NetconfCapability ;
+                             ys:netconfCapabilityId "urn:ietf:params:netconf:capability:rollback-on-error:1.0" ;
+                             ys:netconfCapabilityName "rollback-on-error" ;
+                             ys:netconfCapabilityVersion "1.0" ;
+                             rdfs:comment "This capability indicates that the server will support the `rollback-on-error` value in the `<error-option>` parameter to the `<edit-config>` operation." ;
+                             rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                             rdfs:label "Rollback-on-Error Capability" ;
+                             rdfs:seeAlso <https://datatracker.ietf.org/doc/html/rfc6241#section-8.5> .
+
+
+###  https://w3id.org/yang/server#UrlCapability
+ys:UrlCapability rdf:type owl:NamedIndividual ,
+                          ys:NetconfCapability ;
+                 ys:netconfCapabilityId "urn:ietf:params:netconf:capability:url:1.0" ;
+                 ys:netconfCapabilityName "url" ;
+                 ys:netconfCapabilityVersion "1.0" ;
+                 rdfs:comment "The NETCONF peer has the ability to accept the `<url>` element in `<source>` and `<target>` parameters. The capability is further identified by URL arguments indicating the URL schemes supported." ;
+                 rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                 rdfs:label "URL Capability" ;
+                 rdfs:seeAlso <https://datatracker.ietf.org/doc/html/rfc6241#section-8.8> .
+
+
+###  https://w3id.org/yang/server#ValidateCapability
+ys:ValidateCapability rdf:type owl:NamedIndividual ,
+                                 ys:NetconfCapability ;
+                        ys:netconfCapabilityId "urn:ietf:params:netconf:capability:validate:1.1" ;
+                        ys:netconfCapabilityName "validate" ;
+                        ys:netconfCapabilityVersion "1.1" ;
+                        rdfs:comment "Validate consists of checking a complete configuration for syntactical and semantic errors before applying the configuration to the device." ;
+                        rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                        rdfs:label "Validate Capability" ;
+                        rdfs:seeAlso <https://datatracker.ietf.org/doc/html/rfc6241#section-8.6> .
+
+
+###  https://w3id.org/yang/server#WritableRunningCapability
+ys:WritableRunningCapability rdf:type owl:NamedIndividual ,
+                                      ys:NetconfCapability ;
+                             ys:netconfCapabilityId "urn:ietf:params:netconf:capability:writable-running:1.0" ;
+                             ys:netconfCapabilityName "writable-running" ;
+                             ys:netconfCapabilityVersion "1.0" ;
+                             rdfs:comment "The `:writable-running` capability indicates that the device supports direct writes to the `<running>` configuration datastore. In other words, the device supports `<edit-config>` and `<copy-config>` operations where the `<running>` configuration is the target." ;
+                             rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                             rdfs:label "Writable Running Capability" ;
+                             rdfs:seeAlso <https://datatracker.ietf.org/doc/html/rfc6241#section-8.2> .
+
+
+###  https://w3id.org/yang/server#XpathCapability
+ys:XpathCapability rdf:type owl:NamedIndividual ,
+                            ys:NetconfCapability ;
+                   ys:netconfCapabilityId "urn:ietf:params:netconf:capability:xpath:1.0" ;
+                   ys:netconfCapabilityName "xpath" ;
+                   ys:netconfCapabilityVersion "1.0" ;
+                   rdfs:comment "The XPath capability indicates that the NETCONF peer supports the use of XPath expressions in the `<filter>` element." ;
+                   rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                   rdfs:label "XPath Capability" ;
+                   rdfs:seeAlso <https://datatracker.ietf.org/doc/html/rfc6241#section-8.9> .
+
+
+###  https://w3id.org/yang/server#YangLibrary1.0Capability
+ys:YangLibrary1.0Capability rdf:type owl:NamedIndividual ,
+                                  ys:NetconfCapability ;
+                         ys:netconfCapabilityId "urn:ietf:params:netconf:capability:yang-library:1.0" ;
+                         ys:netconfCapabilityName "yang-library" ;
+                         ys:netconfCapabilityVersion "1.0" ;
+                         rdfs:comment "NETCONF capability that indicates that the NETCONF server implements YANG Library RFC7895." ;
+                         rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                         rdfs:label "Yang Library 1.0 Capability" ;
+                         rdfs:seeAlso <https://datatracker.ietf.org/doc/html/rfc7895> .
+
+
+###  https://w3id.org/yang/server#YangLibrary1.1Capability
+ys:YangLibrary1.1Capability rdf:type owl:NamedIndividual ,
+                                  ys:NetconfCapability ;
+                         ys:netconfCapabilityId "urn:ietf:params:netconf:capability:yang-library:1.1" ;
+                         ys:netconfCapabilityName "yang-library" ;
+                         ys:netconfCapabilityVersion "1.1" ;
+                         rdfs:comment "NETCONF capability that indicates that the NETCONF server implements YANG Library RFC8525." ;
+                         rdfs:isDefinedBy <https://w3id.org/yang/server> ;
+                         rdfs:label "Yang Library 1.1 Capability" ;
+                         rdfs:seeAlso <https://datatracker.ietf.org/doc/html/rfc8526> .
+
+
+[ foaf:name "Ignacio Dominguez Martinez-Casanueva" ;
+  schema:identifier <https://orcid.org/0000-0002-8573-127X>
+] .
+
+[ foaf:homepage <https://github.com/candil-data-fabric> ;
+   foaf:name "CANDIL Data Fabric"
+ ] .
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

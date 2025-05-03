@@ -37,11 +37,11 @@
     yl:moduleSet <NetconfServer/srl/ModuleSet/nokia> ;
     yl:schema <NetconfServer/srl/Schema/nokia> .
 
-<NetconfServer/srl/Datastore/operational> a ys:CandidateDatastore ;
+<NetconfServer/srl/Datastore/candidate> a ys:CandidateDatastore ;
     ys:server <NetconfServer/srl> ;
     yl:implementsSchema <NetconfServer/srl/Schema/nokia> .
 
-<NetconfServer/srl/Datastore/operational> a ys:IntendedDatastore ;
+<NetconfServer/srl/Datastore/intended> a ys:IntendedDatastore ;
     ys:server <NetconfServer/srl> ;
     yl:implementsSchema <NetconfServer/srl/Schema/nokia> .
 
@@ -53,7 +53,7 @@
     ys:server <NetconfServer/srl> ;
     yl:implementsSchema <NetconfServer/srl/Schema/nokia> .
 
-<NetconfServer/srl/Datastore/operational> a ys:StartupDatastore ;
+<NetconfServer/srl/Datastore/startup> a ys:StartupDatastore ;
     ys:server <NetconfServer/srl> ;
     yl:implementsSchema <NetconfServer/srl/Schema/nokia> .
 
