@@ -2,6 +2,7 @@
 @prefix ys: <https://w3id.org/yang/server#> .
 @prefix rml: <http://w3id.org/rml/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix core: <https://ontology.unifiedcyberontology.org/uco/core/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix observable: <https://ontology.unifiedcyberontology.org/uco/observable/> .
 @base <https://network-data-catalog.org/> .
@@ -116,7 +117,7 @@
 
 <NetconfServer/srl/ModuleSet/nokia/ModuleImplementation/openconfig-srl-deviations/2024-10-31> a yl:ModuleImplementation ;
     yl:implementsModule <Module/openconfig-srl-deviations/2024-10-31> ;
-    yl:location "file:///opt/srlinux/deviations/openconfig/openconfig-srl-deviations.yang"^^xsd:anyURI .
+    yl:location "file:///opt/srlinux/deviations/openconfig/openconfig-srl-deviations.yang"^^xsd:anyURI ;
     yl:usesFeature <Module/openconfig-srl-deviations/2019-04-16/Feature/ipv4-unnumbered> ,
                    <Module/openconfig-srl-deviations/2019-04-16/Feature/interface-evpn-internal-tags> .
 
