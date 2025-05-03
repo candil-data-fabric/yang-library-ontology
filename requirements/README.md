@@ -2,24 +2,25 @@
 
 Set of requirements defined for the YANG Library Ontology:
 
-| Competency Question/Natural Language Sentence                                                                 | Answer                                                                                                                     |
-|--------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| A module set has an identifier                                                                               |                                                                                                                            |
-| YANG modules belong to a module set                                                                          |                                                                                                                            |
-| A module has a name, a revision date, and a namespace                                                        |                                                                                                                            |
-| A YANG module can be available in a URL for retrieval                                                        |                                                                                                                            |
-| A datastore implements YANG modules                                                                          |                                                                                                                            |
-| An implementation of a YANG module might use YANG features defined by the YANG module                        |                                                                                                                            |
-| Netconf capabilities are also YANG features                                                                  |                                                                                                                            |
-| A datastore can import YANG modules                                                                          |                                                                                                                            |
-| A module may deviate another module                                                                          |                                                                                                                            |
-| A module may include a one or more submodules                                                                |                                                                                                                            |
-| What is a submodule?                                                                                         | A submodule provides a partial module definition except for the namespace, which is defined by the module that the submodule belongs to |
-| A submodule has a name, revision date                                                                        |                                                                                                                            |
-| A submodule can be available in a URL for retrieval                                                          |                                                                                                                            |
-| What is a YANG Library?                                                                                      | A collection of the YANG modules and submodules used by a YANG server                                                      |
-| A YANG library has an identifier                                                                             |                                                                                                                            |
-| A YANG library includes a set of module sets, schemas, and datastores                                        |                                                                                                                            |
-| A datastore has a datastore schema                                                                           |                                                                                                                            |
-| A schema includes a list of module sets                                                                      |                                                                                                                            |
-| A schema has an identifier                                                                                   |                                                                                                                            |
+| Id   | Competency Question/Fact                                                                                                                |
+|:-----|:----------------------------------------------------------------------------------------------------------------------------------------|
+| F1   | A YANG library collection of the YANG modules and submodules used by a YANG server                                                      |
+| F2   | A submodule provides a partial module definition except for the namespace, which is defined by the module that the submodule belongs to  |
+| CQ1  | What is the identifier of a YANG Library?                                                                                               |
+| CQ2  | Which are the module sets included by a YANG library?                                                                                   |
+| CQ3  | Which are the schemas included by a YANG library?                                                                                       |
+| CQ4  | Which are the datastores included by a YANG library?                                                                                    |
+| CQ5  | Which schema is implemented by a datastore?                                                                                             |
+| CQ6  | Which module sets are included by a schema?                                                                                             |
+| CQ7  | What is the identifier of a schema?                                                                                                     |
+| CQ8  | What is the identifier of a module set?                                                                                                 |
+| CQ9  | Which YANG modules belong to a module set?                                                                                              |
+| CQ10 | What is the name, revision data and namespace of a module?                                                                              |
+| CQ11 | What is the URL where a YANG module is available?                                                                                       |
+| CQ12 | Which YANG modules are implemented by a module set?                                                                                     |
+| CQ13 | Which YANG features are used by an implementation of a YANG module?                                                                     |
+| CQ14 | Which YANG features are NETCONF capabilities?                                                                                           |
+| CQ15 | Which YANG modules are imported by a module set?                                                                                        |
+| CQ16 | Which YANG module deviates another YANG module?                                                                                         |
+| CQ17 | Which YANG submodules are included by a YANG module?                                                                                    |
+| CQ18 | Which YANG modules are submodules?                                                                                                      |
