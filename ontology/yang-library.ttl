@@ -34,20 +34,22 @@ owl:versionInfo a owl:AnnotationProperty .
 
 schema:codeRepository a owl:AnnotationProperty .
 
-yl:augmentsModule a owl:ObjectProperty ;
-    rdfs:label "augments module" ;
+yl:augmentedByModule a owl:ObjectProperty ;
+    rdfs:label "augmented by module" ;
     rdfs:domain yl:Module ;
-    rdfs:range yl:Module .
+    rdfs:range yl:Module ;
+    rdfs:subPropertyOf yl:moduleDependency .
 
 yl:containsModuleSet a owl:ObjectProperty ;
     rdfs:label "contains module set" ;
     rdfs:domain yl:Schema ;
     rdfs:range yl:ModuleSet .
 
-yl:deviatesModule a owl:ObjectProperty ;
-    rdfs:label "deviates module" ;
+yl:deviatedByModule a owl:ObjectProperty ;
+    rdfs:label "deviated by module" ;
     rdfs:domain yl:Module ;
-    rdfs:range yl:Module .
+    rdfs:range yl:Module ;
+    rdfs:subPropertyOf yl:moduleDependency .
 
 yl:featureName a owl:DatatypeProperty ;
     rdfs:label "feature name" ;
@@ -57,11 +59,6 @@ yl:featureName a owl:DatatypeProperty ;
 yl:implementedModule a owl:ObjectProperty ;
     rdfs:label "implemented module" ;
     rdfs:domain yl:ModuleImplementation ;
-    rdfs:range yl:Module .
-
-yl:implementsModule a owl:ObjectProperty ;
-    rdfs:label "implements module" ;
-    rdfs:domain yl:ModuleSet ;
     rdfs:range yl:Module .
 
 yl:implementsSchema a owl:ObjectProperty ;
@@ -76,13 +73,15 @@ yl:importedModule a owl:ObjectProperty ;
 
 yl:importsModule a owl:ObjectProperty ;
     rdfs:label "imports module" ;
-    rdfs:domain yl:ModuleSet ;
-    rdfs:range yl:Module .
+    rdfs:domain yl:Module ;
+    rdfs:range yl:Module ;
+    rdfs:subPropertyOf yl:moduleDependency .
 
 yl:includesSubmodule a owl:ObjectProperty ;
     rdfs:label "includes submodule" ;
     rdfs:domain yl:Module ;
-    rdfs:range yl:Submodule .
+    rdfs:range yl:Submodule ;
+    rdfs:subPropertyOf yl:moduleDependency .
 
 yl:location a owl:DatatypeProperty ;
     rdfs:label "location" ;
@@ -195,6 +194,9 @@ yl:Schema a owl:Class ;
 
 yl:YangLibrary a owl:Class ;
     rdfs:label "Yang Library" .
+
+yl:moduleDependency a owl:ObjectProperty ;
+    rdfs:label "module dependency" .
 
 yl:ModuleSet a owl:Class ;
     rdfs:label "Module Set" .

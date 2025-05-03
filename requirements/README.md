@@ -22,4 +22,3 @@ Set of requirements defined for the YANG Library Ontology:
 | CQ14| Which YANG module is deviated by another YANG module?                                                                      |
 | CQ15| Which YANG module is augmented by another YANG module?                                                                     |
 | CQ16| Which YANG submodules are included by a YANG module?                                                                       |
-| CQ17| Which YANG modules are submodules?                                                                                         |

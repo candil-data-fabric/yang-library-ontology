@@ -15,7 +15,8 @@
     ys:socketAddress <NetconfServer/srl/SocketAddress> ;
     ys:serverAccount <NetconfServer/srl/ServerAccount> ;
     ys:hostKeyVerification "false";
-    yl:yangLibrary <NetconfServer/srl/YangLibrary/1k19sk2x1k19sk3yk4> .
+    yl:yangLibrary <NetconfServer/srl/YangLibrary/1k19sk2x1k19sk3yk4> ;
+    ys:capability ys:YangLibrary1.1Capability .
 
 <NetconfServer/srl/SocketAddress> a observable:SocketAddress ;
     observable:addressValue "172.100.100.11:830" .
@@ -79,9 +80,7 @@
 <Module/iana-if-type/2014-05-08> a yl:Module ;
     yl:moduleName "iana-if-type" ;
     yl:revisionDate "2014-05-08"^^xsd:date ;
-    yl:namespace "urn:ietf:params:xml:ns:yang:iana-if-type"^^xsd:anyURI ;
-    yl:includesSubmodule <Module/openconfig-aft-common/2023-09-26> ,
-                         <Module/openconfig-aft-ethernet/2023-09-26> .
+    yl:namespace "urn:ietf:params:xml:ns:yang:iana-if-type"^^xsd:anyURI .
 
 <NetconfServer/srl/ModuleSet/nokia/ModuleImport/openconfig-aft/2023-09-26> a yl:ModuleImport ;
     yl:location "file:///opt/srlinux/models/openconfig/aft/openconfig-aft.yang"^^xsd:anyURI ;
@@ -113,7 +112,8 @@
 <Module/openconfig-interfaces/2023-11-06> a yl:Module ;
     yl:moduleName "openconfig-interfaces" ;
     yl:revisionDate "2023-11-06"^^xsd:date ;
-    yl:namespace "http://openconfig.net/yang/interfaces"^^xsd:anyURI .
+    yl:namespace "http://openconfig.net/yang/interfaces"^^xsd:anyURI ;
+    yl:deviatedByModule <Module/openconfig-srl-deviations/2024-10-31> .
 
 <NetconfServer/srl/ModuleSet/nokia/ModuleImplementation/openconfig-srl-deviations/2024-10-31> a yl:ModuleImplementation ;
     yl:implementedModule <Module/openconfig-srl-deviations/2024-10-31> ;
@@ -130,6 +130,4 @@
 <Module/openconfig-srl-deviations/2024-10-31> a yl:Module ;
     yl:moduleName "openconfig-srl-deviations" ;
     yl:revisionDate "2024-10-31"^^xsd:date ;
-    yl:namespace "urn:nokia.com:srlinux:openconfig:openconfig-srl-deviations"^^xsd:anyURI ;
-    yl:deviatesModule <Module/openconfig-interfaces/2023-11-06> .
-
+    yl:namespace "urn:nokia.com:srlinux:openconfig:openconfig-srl-deviations"^^xsd:anyURI .
