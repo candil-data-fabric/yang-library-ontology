@@ -1,0 +1,141 @@
+@prefix yl: <https://w3id.org/yang/library#> .
+@prefix ys: <https://w3id.org/yang/server#> .
+@base <https://network-data-catalog.org/> .
+
+#set( $libQuery = '
+    declare namespace yanglib = "urn:ietf:params:xml:ns:yang:ietf-yang-library" ;
+    for $lib in /yanglib:yang-library
+    return map {
+        "id": $lib/yanglib:content-id/text() ,
+        "schemaId": $lib/yanglib:schema/yanglib:name/text() ,
+        "moduleSetId": $lib/yanglib:module-set/yanglib:name/text()
+    }')
+#set($libData = $reader.getDataframe($libQuery))
+
+#foreach($lib in $libData)
+<NetconfServer/srl/YangLibrary/$lib.id> a yl:YangLibrary ;
+    yl:yangLibraryId "$lib.id" ;
+    yl:moduleSet <NetconfServer/srl/ModuleSet/$lib.moduleSetId> ;
+    yl:schema <NetconfServer/srl/Schema/$lib.schemaId> .
+#end
+
+#set( $dsMap = {
+  "ds:candidate": "ys:CandidateDatastore",
+  "ds:intended": "ys:IntendedDatastore",
+  "ds:operational": "ys:OperationalDatastore",
+  "ds:running": "ys:RunningDatastore",
+  "ds:startup": "ys:StartupDatastore"
+} )
+
+#set( $dsQuery = '
+    declare namespace yanglib = "urn:ietf:params:xml:ns:yang:ietf-yang-library" ;
+    for $ds in /yanglib:yang-library/yanglib:datastore
+    return map {
+        "id": $ds/yanglib:name/text() ,
+        "schemaId": $ds/yanglib:schema/text()
+    }')
+#set($dsData = $reader.getDataframe($dsQuery))
+
+#foreach($ds in $dsData)
+#set( $dsType = $dsMap.get($ds.id) )
+<NetconfServer/srl/Datastore/$ds.id> a $dsType ;
+    ys:server <NetconfServer/srl> ;
+    yl:implementsSchema <NetconfServer/srl/Schema/$ds.schemaId> .
+
+#end
+
+#set( $schemaQuery = '
+    declare namespace yanglib = "urn:ietf:params:xml:ns:yang:ietf-yang-library" ;
+    for $schema in /yanglib:yang-library/yanglib:schema
+    return map {
+        "id": $schema/yanglib:name/text() ,
+        "moduleSetId": $schema/yanglib:module-set/text()
+    }')
+#set($schemaData = $reader.getDataframe($schemaQuery))
+
+#foreach($schema in $schemaData)
+<NetconfServer/srl/Schema/$schema.id> a yl:Schema ;
+    yl:schemaId "$schema.id" ;
+    yl:containsModuleSet <NetconfServer/srl/ModuleSet/$schema.moduleSetId> .
+
+#end
+
+#set( $importedModuleQuery = '
+    declare namespace yanglib = "urn:ietf:params:xml:ns:yang:ietf-yang-library" ;
+    for $module in /yanglib:yang-library/yanglib:module-set/yanglib:import-only-module
+    return map {
+        "name": $module/yanglib:name/text() ,
+        "revision": $module/yanglib:revision/text() ,
+        "namespace": $module/yanglib:namespace/text() ,
+        "location": $module/yanglib:location/text() ,
+        "moduleSetId": $module/ancestor::yanglib:module-set/yanglib:name/text()
+    }')
+#set($importedModuleData = $reader.getDataframe($importedModuleQuery))
+#foreach($module in $importedModuleData)
+<NetconfServer/srl/ModuleSet/$module.moduleSetId/ModuleImport/$module.name/$module.revision> a yl:ModuleImport ;
+    yl:location "$module.location"^^xsd:anyURI ;
+    yl:importedModule <Module/$module.name/$module.revision> .
+
+<Module/$module.name/$module.revision> a yl:Module ;
+    yl:moduleName "$module.name" ;
+    yl:revisionDate "$module.revision"^^xsd:date ;
+    yl:namespace "$module.namespace"^^xsd:anyURI .
+#end
+
+#set( $moduleQuery = '
+    declare namespace yanglib = "urn:ietf:params:xml:ns:yang:ietf-yang-library" ;
+    for $module in /yanglib:yang-library/yanglib:module-set/yanglib:module
+    return map {
+        "name": $module/yanglib:name/text() ,
+        "revision": $module/yanglib:revision/text() ,
+        "namespace": $module/yanglib:namespace/text() ,
+        "location": $module/yanglib:location/text() ,
+        "moduleSetId": $module/ancestor::yanglib:module-set/yanglib:name/text()
+    }')
+#set($moduleData = $reader.getDataframe($moduleQuery))
+#foreach($module in $moduleData)
+<NetconfServer/srl/ModuleSet/$module.moduleSetId/ModuleImplementation/$module.name/$module.revision> a yl:ModuleImplementation ;
+    yl:implementedModule <Module/$module.name/$module.revision> ;
+    yl:location "$module.location"^^xsd:anyURI .
+
+<Module/$module.name/$module.revision> a yl:Module ;
+    yl:moduleName "$module.name" ;
+    yl:revisionDate "$module.revision"^^xsd:date ;
+    yl:namespace "$module.namespace"^^xsd:anyURI .
+#end
+
+#set( $deviationQuery = '
+    declare namespace yanglib = "urn:ietf:params:xml:ns:yang:ietf-yang-library" ;
+    for $deviation in /yanglib:yang-library/yanglib:module-set/yanglib:module/yanglib:deviation
+    return map {
+        "deviationName": $deviation/text() ,
+        "deviatedModuleName": $deviation/ancestor::yanglib:module/yanglib:name/text() ,
+        "deviatedModuleDate": $deviation/ancestor::yanglib:module/yanglib:revision/text()
+    }')
+#set($deviationData = $reader.getDataframe($deviationQuery))
+#foreach($deviation in $deviationData)
+#foreach($module in $moduleData)
+#if($module.name == $deviation.deviationName)
+<Module/$deviation.deviatedModuleName/$deviation.deviatedModuleDate> yl:deviatedByModule <Module/$deviation.deviationName/$module.revision> .
+#break
+#end
+#end
+#end
+
+#set( $featureQuery = '
+    declare namespace yanglib = "urn:ietf:params:xml:ns:yang:ietf-yang-library" ;
+    for $feature in /yanglib:yang-library/yanglib:module-set/yanglib:module/yanglib:feature
+    return map {
+        "featureName": $feature/text() ,
+        "moduleName": $feature/ancestor::yanglib:module/yanglib:name/text() ,
+        "moduleDate": $feature/ancestor::yanglib:module/yanglib:revision/text(),
+        "moduleSetName": $feature/ancestor::yanglib:module-set/yanglib:name/text()
+    }')
+#set($featureData = $reader.getDataframe($featureQuery))
+#foreach($feature in $featureData)
+<NetconfServer/srl/ModuleSet/$feature.moduleSetName/ModuleImplementation/$feature.moduleName/$feature.moduleDate>
+    yl:usesFeature <Module/$feature.moduleName/$feature.moduleDate/Feature/$feature.featureName> .
+
+<Module/$feature.moduleName/$feature.moduleDate/Feature/$feature.featureName> a yl:Feature ;
+    yl:featureName "$feature.featureName" .
+#end
