@@ -104,6 +104,54 @@
     yl:namespace "$module.namespace"^^xsd:anyURI .
 #end
 
+#set( $implementedSubmoduleQuery = '
+    declare namespace yanglib = "urn:ietf:params:xml:ns:yang:ietf-yang-library" ;
+    for $implementedSubmodule in /yanglib:yang-library/yanglib:module-set/yanglib:module/yanglib:submodule
+    return map {
+        "name": $implementedSubmodule/yanglib:name/text() ,
+        "revision": $implementedSubmodule/yanglib:revision/text() ,
+        "location": $implementedSubmodule/yanglib:location/text() ,
+        "moduleName": $implementedSubmodule/ancestor::yanglib:module/yanglib:name/text() ,
+        "moduleRevision": $implementedSubmodule/ancestor::yanglib:module/yanglib:revision/text(),
+        "moduleSetId": $implementedSubmodule/ancestor::yanglib:module-set/yanglib:name/text()
+    }')
+#set($implementedSubmoduleData = $reader.getDataframe($implementedSubmoduleQuery))
+#foreach($implementedSubmodule in $implementedSubmoduleData)
+<NetconfServer/srl/ModuleSet/$implementedSubmodule.moduleSetId/ModuleImplementation/$implementedSubmodule.name/$implementedSubmodule.revision> a yl:ModuleImplementation ;
+    yl:implementedModule <Submodule/$implementedSubmodule.name/$implementedSubmodule.revision> ;
+    yl:location "$implementedSubmodule.location"^^xsd:anyURI .
+
+<Submodule/$implementedSubmodule.name/$implementedSubmodule.revision> a yl:Submodule ;
+    yl:moduleName "$implementedSubmodule.name" ;
+    yl:revisionDate "$implementedSubmodule.revision"^^xsd:date .
+
+<Module/$implementedSubmodule.moduleName/$implementedSubmodule.moduleRevision> yl:includesSubmodule <Submodule/$implementedSubmodule.name/$implementedSubmodule.revision> .
+#end
+
+#set( $importedSubmoduleQuery = '
+    declare namespace yanglib = "urn:ietf:params:xml:ns:yang:ietf-yang-library" ;
+    for $importedSubmodule in /yanglib:yang-library/yanglib:module-set/yanglib:module/yanglib:submodule
+    return map {
+        "name": $importedSubmodule/yanglib:name/text() ,
+        "revision": $importedSubmodule/yanglib:revision/text() ,
+        "location": $importedSubmodule/yanglib:location/text() ,
+        "moduleName": $importedSubmodule/ancestor::yanglib:module/yanglib:name/text() ,
+        "moduleRevision": $importedSubmodule/ancestor::yanglib:module/yanglib:revision/text(),
+        "moduleSetId": $importedSubmodule/ancestor::yanglib:module-set/yanglib:name/text()
+    }')
+#set($importedSubmoduleData = $reader.getDataframe($importedSubmoduleQuery))
+#foreach($importedSubmodule in $importedSubmoduleData)
+<NetconfServer/srl/ModuleSet/$importedSubmodule.moduleSetId/ModuleImport/$importedSubmodule.name/$importedSubmodule.revision> a yl:ModuleImport ;
+    yl:importedModule <Submodule/$importedSubmodule.name/$importedSubmodule.revision> ;
+    yl:location "$importedSubmodule.location"^^xsd:anyURI .
+
+<Submodule/$importedSubmodule.name/$importedSubmodule.revision> a yl:Submodule ;
+    yl:moduleName "$importedSubmodule.name" ;
+    yl:revisionDate "$importedSubmodule.revision"^^xsd:date .
+
+<Module/$importedSubmodule.moduleName/$importedSubmodule.moduleRevision> yl:includesSubmodule <Submodule/$importedSubmodule.name/$importedSubmodule.revision> .
+#end
+
 #set( $deviationQuery = '
     declare namespace yanglib = "urn:ietf:params:xml:ns:yang:ietf-yang-library" ;
     for $deviation in /yanglib:yang-library/yanglib:module-set/yanglib:module/yanglib:deviation
@@ -134,8 +182,8 @@
 #set($featureData = $reader.getDataframe($featureQuery))
 #foreach($feature in $featureData)
 <NetconfServer/srl/ModuleSet/$feature.moduleSetName/ModuleImplementation/$feature.moduleName/$feature.moduleDate>
-    yl:usesFeature <Module/$feature.moduleName/$feature.moduleDate/Feature/$feature.featureName> .
+    yl:usesFeature <Feature/$feature.featureName> .
 
-<Module/$feature.moduleName/$feature.moduleDate/Feature/$feature.featureName> a yl:Feature ;
+<Feature/$feature.featureName> a yl:Feature ;
     yl:featureName "$feature.featureName" .
 #end
